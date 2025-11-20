@@ -1,0 +1,207 @@
+.company-form {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px; 
+    z-index: 45;
+
+    @media (max-width: 650px) {
+        padding: 0px; 
+    }
+
+    .form-buttons-container {
+        display: flex;
+        justify-content: flex-end;  
+        width: 100%; 
+
+        @media (max-width: 650px) {
+            justify-content: center;
+        }
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+
+        div {
+            cursor: pointer;
+            padding: 10px 30px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            margin-left: 10px;
+        }
+    }   
+
+    .form-body {
+        width: 100%;
+        max-width: 450px;
+        padding: 20px; 
+        background: #7755fe; 
+        border-radius: 10px 0px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        p {
+            font-size: 24px;
+            color: white;
+            margin: 0;
+
+            @media (max-width: 650px) { font-size: 18px; }
+        }
+
+        form {
+            width: 100%;
+            display: grid;
+            gap: 16px;
+            grid-template-columns: 1fr 1fr;
+
+            .form-group {
+                width: 100%;
+                position: relative;
+
+                select {
+                    width: 100% !important;
+                }
+
+                .form-control {
+                    width: 100%;  
+                    padding: 12px;
+                    font-size: 14px;
+                    border: 1px solid #cccccc00;
+                    border-radius: 5px;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);     
+                    
+                    &::placeholder {
+                        color: #7755fe; 
+                    }
+                    
+                    .razonSocEmp {
+                        font-size: 12px !important;
+                    }
+                }
+
+                select.form-control {
+                    appearance: none;
+                    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+                    background-repeat: no-repeat;
+                    background-position: right 10px center;
+                    background-size: 8px 10px;
+                }
+
+                
+
+                .form-error {
+                    color: white;
+                    font-size: 12px;
+                    margin-top: 5px;
+                }
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px #7755fe96;
+            }
+        }
+
+        .form-privacy {
+            font-size: 10px;
+            color: #ffffff; 
+            margin-top: 10px;
+        }
+
+        .form-finally {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+
+            .btn {
+                width: 100%;
+                max-width: 200px;
+                background: #ff4a57;
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+
+                position: relative;  
+                top: 10px;
+                // transform: translateX(-50%);  
+                z-index: 10; 
+
+                &:hover {
+                    background: #e43e4b;
+                }
+            }
+        }
+
+        @media (max-width: 650px) { 
+            position: relative;
+            
+            background: #7755fe;  
+            // background: linear-gradient(315deg, #422f8f96, #7755fe96); 
+
+            border-radius: 0px;
+
+            margin-top: -1px;
+            padding: 20px 20px 0px 20px;
+
+            .form-privacy {
+                font-size: 10px;
+                color: #ffffff; 
+                margin-top: 0px;
+                margin-bottom: 10px;
+            }
+
+            .form-finally {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 100%;
+    
+                .btn {
+                    width: 100%;
+                    max-width: 240px;
+
+                    background: #ff4a57;                    
+                    border: none;
+                
+                    color: white;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+
+                    padding: 20px 10px;
+                    border-radius: 5px;
+
+                    cursor: pointer;
+    
+                    position: absolute;  
+                    top: -15px; 
+                    z-index: 100; 
+    
+                    &:hover {
+                        background: #e43e4b;
+                    }
+                }
+            }
+
+        }
+    }   
+}

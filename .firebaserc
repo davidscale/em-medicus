@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "em-hominis",
+    "landing-hominis-test": "landing-hominis-test"
+  },
+  "targets": {},
+  "etags": {}
+}

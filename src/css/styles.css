@@ -1,0 +1,307 @@
+/* index.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("../assets/fonts/Roboto-Regular.ttf");
+  font-display: swap;
+}
+
+@layer base {
+  html {
+  --color-primary: #7755fe;
+  --color-secondary: white;
+  --color-tertiary: #ff5863;
+  --color-tertiary-hover: #ff4d4f;
+  --color-typography: black;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* color: var(--color-primary); */
+  font-family: "Roboto-Regular";
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Establece el fondo del cuerpo usando el color secundario definido en tailwind.config.js */
+body {
+  background-color: var(--color-secondary);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* https://webkit-scroll-gen.sourceforge.net/ */
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px 100000vh transparent;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-primary);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0px none transparent;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+/* ===== END Scrollbar CSS ===== */
+
+
+.owl-carousel.owl-drag .owl-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tailwind generic classes */
+@layer components {
+  .btn {
+    @apply flex;
+    @apply gap-1;
+    @apply items-center;
+    @apply justify-center;
+
+    @apply rounded-full;
+
+    @apply hover:brightness-90;
+    @apply focus:outline-none;
+    @apply active:brightness-90;
+
+    @apply px-4;
+    @apply py-2;
+
+    @apply disabled:opacity-50
+  }
+
+  img {
+    @apply pointer-events-none;
+  }
+}
+
+.btn-cotizar {
+    display: flex;
+    align-items: center;
+          
+    .btn-red {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--color-tertiary);; 
+      color: white; 
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: var(--color-tertiary-hover);;  
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+.labelClass {
+  color: #7755fe;
+} 
+
+.div-alert {
+
+  p {
+    color: #ffffff;
+    padding: 15px 0px;
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: -110px; 
+  } 
+
+  @media (max-width: 650px) { 
+    p {
+      color: #ffffff;
+      padding: 5px 10px;
+      font-size: 12px;
+      margin-top: -35px;
+      margin-bottom: -10px;
+
+      width: 350px;
+
+      background: #bdbdbd;
+      background: linear-gradient(0deg, rgb(189 189 189 / 0%) 0%, rgb(82 82 82 / 74%) 100%);
+    }      
+  }
+}
+
+.header-home {
+  @media (max-width: 650px) {
+    margin-top: 20px;
+  }
+}
+
+.bloqueUno {  
+    .text-lg{
+      font-size: 20px;
+      right: -20px; 
+      top: 10px;
+    }
+
+    p {
+      line-height: 40px;
+    }
+
+    .text-2xl{
+      font-size: 24px;
+      position: relative;
+      top: -15px; 
+      left: 3px;
+    }
+
+    .text-7xl {
+      line-height: 50px !important;
+    }
+  }
+
+  .bloqueDos {
+
+    height: 100px;
+
+    p {
+      font-size: 16px;
+      line-height: 40px;
+    }
+    .text-4xl{
+      font-size: 55px;
+      line-height: 25px;
+    }
+
+    .text-2xl{
+      font-size: 20px;
+      position: relative;
+      top: -15px;
+    } 
+
+    .text-lg{
+      font-size: 16px;
+      top: 5px;
+      right: -18px;
+    } 
+
+    .text-post {
+      line-height: 20px;
+    }
+
+  }
+
+@media (max-width: 650px) {
+
+  .descuento {
+    margin-top: 10px;
+    padding: 10px 0px;
+  }
+
+  .h-56{
+    height: 12rem !important;
+  }
+
+  .text-xl{ 
+    font-size: 16px;
+  }
+
+  .text-6xl {
+    font-size: 45px;
+  }
+
+  .bloqueUno {
+    top: 0px;
+    position: relative; 
+
+    p {
+      line-height: 15px;
+    }
+
+    .text-4xl{
+      font-size: 36px;
+      line-height: 33px;
+    }
+
+    .text-2xl{
+      font-size: 16px;
+      position: relative;
+      top: -4px; 
+      left: 3px;
+    }
+
+    .text-lg{
+      font-size: 14px;
+      top: 12px;
+      right: -12px;
+    }
+  }
+
+  .bloqueDos {
+
+    height: 45px;
+
+    p {
+      font-size: 10px;      
+      line-height: 12px;
+    }
+    .text-4xl{
+      font-size: 26px;
+      line-height: 25px;
+    }
+
+    .text-2xl{
+      font-size: 12px;
+      position: relative;
+      top: -10px;
+    }
+
+    .text-xl{ 
+      font-size: 12px;
+    }
+
+    .text-6xl {
+      font-size: 45px;
+    }
+
+    .text-lg{
+      font-size: 10px;
+      top: 5px;
+      right: -10px;
+    }
+
+    .text-post {
+      line-height: 0px;
+    }
+
+  }
+}

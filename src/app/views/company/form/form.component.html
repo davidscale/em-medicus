@@ -1,0 +1,241 @@
+<div class="company-form" [ngStyle]="{'color': company.color_primary}">
+  <ng-container> 
+
+    <div class="form-buttons-container">
+      <div class="form-buttons d-flex" (click)="changeForm()">
+        <div [ngStyle]="isPersonal ? {'background': '#7755fe'} : {'background': '#c3c3c3b8'}">
+          Particulares</div>
+        <div [ngStyle]="isPersonal ? {'background': '#c3c3c3b8'} : {'background': '#7755fe'}">
+          Empresas</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="form-body d-flex flex-column align-items-center">
+    <p>
+      Completa el formulario y recibí la cotización de los planes en los 2 min. 
+    </p>
+
+    <form [formGroup]="companyForm" [ngStyle]="{'color': company.color_primary}">
+
+      <ng-container *ngIf="isPersonal; else isCompany"> 
+        <div class="form-group">
+          <input class="form-imput" formControlName="firstName" name="firstName" type="text" class="form-control"
+            [placeholder]="'Nombre*'">
+          <span class="form-error"
+            *ngIf="companyForm.get('firstName').invalid && (companyForm.get('firstName').dirty || companyForm.get('firstName').touched)">
+            Nombre inválido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="phone" name="phone" type="number" inputmode="tel" class="form-control" placeholder="Teléfono*"> 
+
+          <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
+                      (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
+            
+            <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
+              Mínimo de 9 dígitos
+            </ng-container>
+
+            <ng-container *ngIf="companyForm.get('phone')?.errors['tooLong']">
+              Máximo de 10 dígitos
+            </ng-container>
+
+            <ng-container *ngIf="companyForm.get('phone')?.errors['required']">
+              Campo obligatorio
+            </ng-container>
+
+          </span>
+        </div>
+
+        <ng-container>
+          <div class="form-group">
+            <input formControlName="age" name="age" type="number" class="form-control" placeholder="Edad*">
+            <span class="form-error"
+              *ngIf="companyForm.get('age').invalid && (companyForm.get('age').dirty || companyForm.get('age').touched)">
+              {{ 'De' + company.valid_age.min + ' a ' + company.valid_age.max + ' años' }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <select formControlName="family" name="family" class="form-control" (ngModelChange)="onFamily($event)">
+              <option value=null selected disabled>Situación Familiar*</option>
+
+              <ng-container *ngFor="let item of familyTypes">
+                <option [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </ng-container>
+            </select>
+
+            <span class="form-error"
+              *ngIf="companyForm.get('family').invalid && (companyForm.get('family').dirty || companyForm.get('family').touched)">
+              Seleccione titular
+            </span>
+          </div>
+
+          <ng-container *ngIf="companyForm.get('family').value as aux">
+            <ng-container *ngIf="aux == familyTypes[1].name || aux == familyTypes[2].name">
+              <div class="form-group">
+                <input formControlName="spouseAge" name="spouseAge" type="number" class="form-control" placeholder="Edad Pareja*">
+
+                <span class="form-error"
+                  *ngIf="companyForm.get('spouseAge').invalid && (companyForm.get('spouseAge').dirty || companyForm.get('spouseAge').touched)">
+                  {{ 'De ' + company.valid_age.min + ' a ' + company.valid_age.max + ' años' }}
+                </span>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="aux == familyTypes[2].name || aux == familyTypes[3].name">
+              <div class="form-group">
+                <select formControlName="numberOfChildren" name="numberOfChildren" class="form-control">
+                  <option value=null selected disabled>Cantidad de Hijos*</option>
+
+                  <ng-container *ngFor="let item of childrens">
+                    <option [value]="item">
+                      {{ item }}
+                    </option>
+                  </ng-container>
+                </select>
+
+                <span class="form-error"
+                  *ngIf="companyForm.get('numberOfChildren').invalid && (companyForm.get('numberOfChildren').dirty || companyForm.get('numberOfChildren').touched)">
+                  Seleccione Hijos
+                </span>
+              </div>
+            </ng-container>
+          </ng-container>
+
+        </ng-container>
+      </ng-container>
+      
+
+      <ng-template #isCompany>
+
+        <div class="form-group">
+          <input formControlName="razonSocialEmp" name="razonSocialEmp" type="text" class="form-control"
+            [placeholder]="'Razón social*'">
+          <span class="form-error"
+            *ngIf="companyForm.get('razonSocialEmp').invalid && (companyForm.get('razonSocialEmp').dirty || companyForm.get('razonSocialEmp').touched)">
+            Razón social inválida.
+          </span>
+        </div> 
+
+        <div class="form-group">
+          <input formControlName="cuitEmp" name="cuitEmp" type="number" inputmode="tel" class="form-control" placeholder="CUIT de la Empresa*">
+
+          <span class="form-error"
+            *ngIf="companyForm.get('cuitEmp').invalid && (companyForm.get('cuitEmp').dirty || companyForm.get('cuitEmp').touched)">
+            Inválido. Debe contener 11 dígitos.
+          </span>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="firstName" name="firstName" type="text" class="form-control" placeholder="Tú Nombre*">
+          <span class="form-error"
+            *ngIf="companyForm.get('firstName').invalid && (companyForm.get('firstName').dirty || companyForm.get('firstName').touched)">
+            Nombre inválido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="phone" name="phone" type="number" inputmode="tel" class="form-control" placeholder="Tú Teléfono*">
+
+          <!-- <span class="form-error"
+            *ngIf="companyForm.get('phone').invalid && (companyForm.get('phone').dirty || companyForm.get('phone').touched)">
+            Mínimo de 10 dígitos
+          </span> -->
+
+          <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
+                      (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
+            
+            <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
+              Mínimo de 9 dígitos
+            </ng-container>
+
+            <ng-container *ngIf="companyForm.get('phone')?.errors['tooLong']">
+              Máximo de 10 dígitos
+            </ng-container>
+
+            <ng-container *ngIf="companyForm.get('phone')?.errors['required']">
+              Campo obligatorio
+            </ng-container>
+
+          </span>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="email" name="email" type="email" class="form-control" placeholder="Tú Email*">
+
+          <span class="form-error"
+            *ngIf="companyForm.get('email').invalid && (companyForm.get('email').dirty || companyForm.get('email').touched)">
+            Ingresá un email válido.
+          </span>
+        </div>
+
+        <div class="form-group">
+          <select formControlName="employees" name="employees" class="form-control">
+            <option [value]="null" selected disabled>Cantidad Empleados*</option>
+            <option [value]="'2-15'">Entre 2 y 15</option>
+            <option [value]="'16-50'">Entre 16 y 50</option>
+            <option [value]="'+50'">Más de 50</option>
+          </select>
+
+          <span class="form-error"
+            *ngIf="companyForm.get('employees').invalid && (companyForm.get('employees').dirty || companyForm.get('employees').touched)">
+            Seleccione empleados
+          </span>
+        </div>
+      </ng-template>
+
+      <div class="form-group">
+        <select formControlName="residency" name="residency" class="form-control">
+          <option [value]="null" selected disabled>Residencia*</option>
+            <ng-container *ngFor="let item of company.residences">
+              <option [value]="item.id">
+                {{ item.name }}
+              </option>
+          </ng-container>
+        </select>
+
+        <span class="form-error"
+          *ngIf="companyForm.get('residency').invalid && (companyForm.get('residency').dirty || companyForm.get('residency').touched)">
+          Seleccione residencia
+        </span>
+      </div>
+
+      <ng-container *ngIf="isPersonal">
+        <div class="form-group">
+          <select formControlName="type" name="type" class="form-control">
+            <option [value]="null" selected disabled>Trabajo*</option>
+
+            <option *ngFor="let item of affiliateTypes" [value]="item.id">{{ item.name }}</option>
+          </select>
+
+          <span class="form-error"
+            *ngIf="companyForm.get('type').invalid && (companyForm.get('type').dirty || companyForm.get('type').touched)">
+            Seleccione trabajo
+          </span>
+        </div>
+      </ng-container>
+    </form>
+
+    <div class="form-privacy d-flex justify-content-start">
+      <span class="small-text">
+        La privacidad es de vital importancia para nosotros y lo demostramos evitando llamadas molestas y correos
+        invasivos.
+      </span>
+    </div>
+
+    <div class="form-finally">
+      <button class="btn btn-secundary" (click)="onSubmit()">COTIZÁ LOS PLANES!</button>
+    </div>
+
+    <div class="form-garabato d-sm-none"
+      [ngStyle]="{ 'background': 'linear-gradient(to top right, '+ company.color_primary_dark +' 49%, rgba(255,255,255,1) 50%, transparent 52%)' }">
+    </div>
+  </div>
+</div>
+
+

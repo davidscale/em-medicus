@@ -1,0 +1,210 @@
+{
+  "companyId": 65,
+  "key_name": "hominis",
+  "name": "Hominis",
+  "discount": 20,
+
+  "color_primary": "#7755fe",
+  "color_primary_dark": "#b5b5b55e",
+  "color_secundary": "#F8F8F8",
+
+  "background_any": true,
+
+  "content": "Hominis",
+  "valid_age": { "min": 18, "max": 59 },
+
+  "residences": [
+    { "id": 1, "name": "Capital Federal", "code": "C,1" },
+    { "id": 2, "name": "Zona Norde de Bs. As", "code": "GBN,2" },
+    { "id": 3, "name": "Zona Sur de Bs. As", "code": "GBS,3" },
+    { "id": 4, "name": "Zona Oeste de Bs. As", "code": "GBS,4" }
+  ],
+
+  "config": {
+    "title": "Hominis - Precios, cartillas y prestaciones",
+    "meta": [
+      {
+        "name": "Description",
+        "content": "Conocé los diferentes planes de Hominis. Te asesoramos gratuitamente sobre los precios, la cartilla y las prestaciones de los diferentes planes."
+      }
+    ]
+  },
+
+  "needs": [
+    {
+      "title": "Particulares o autónomos",
+      "subtitle": "La mejor opción de precio calidad",
+      "img": "need-particular"
+    },
+    {
+      "title": "Monotributistas",
+      "subtitle": "Deriva tus aportes a la obra social y paga menos",
+      "img": "need-monotributista"
+    },
+    {
+      "title": "Personas en relación de dependencias",
+      "subtitle": "Deriva tus aportes a la obra social y paga menos",
+      "img": "need-dependiente"
+    },
+    {
+      "title": "Planes corporativos para empresas",
+      "subtitle": "Te cotizamos el mejor plan para tus empleados",
+      "img": "need-corporativo"
+    }
+  ],
+
+  "benefits": [
+    {
+      "title": "Cobertura Médica Integral",
+      "subtitle": "Todos los planes cuentan con cobertura en consultas y prácticas médicas, internación al 100% y emergencias médicas a domicilio",
+      "img": "benefit-family"
+    }, 
+    {
+      "title": "Odontología General al 100%",
+      "subtitle": "Consultas y tratamientos",
+      "img": "benefit-teeth"
+    },
+    {
+      "title": "Emergencias Médicas las 24 hs",
+      "subtitle": "Servicio de atención médica en domicilio, urgencias y emergencias médicas las 24 hs",
+      "img": "benefit-ambulance"
+    },
+    {
+      "title": "Gestiones online",
+      "subtitle": "Autorizaciones, Consultá tu factura",
+      "img": "benefit-online"
+    }
+  ],
+
+  "sanatorios": [ 
+    { "name": "santa-isabel" },
+    { "name": "clinica-independencia" },
+    { "name": "sanatorio-guemes" },
+    { "name": "clinica-centenario" },
+    { "name": "clinica-montegrande" }
+  ],
+
+  "sanatorio_unico": {
+    "title": "Nuestro <br>Sanatorio Güemes",
+    "background": "#eff1f0",
+    "image": "sanatorio_guemes"
+  },
+
+  "plans": [
+    {
+      "title": {
+        "data": "Plan Vita",
+        "image": "plan-vita",
+        "color": "white",
+        "background": "#7755fe",
+        "image_header": "background-plan-vita",
+        "theme": "latest"
+      },
+      "benefits": [
+        {
+          "title": "Consultas médicas ",
+          "content": "Consultas médicas ilimitadas sin ningún costo adicional",
+          "img": "plan-hospital"
+        },
+        {
+          "title": "Prácticas y estudios",
+          "content": "Estudios y prácticas diagnósticas sin cargo",
+          "img": "plan-practice"
+        },
+
+        {
+          "title": "Internación",
+          "content": "En habitación individual en Sanatorio Güemes",
+          "img": "plan-bed"
+        },
+        {
+          "title": "Rehabilitación",
+          "content": "40 sesiones anuales de fisiokinesioterapia y fonoaudiología sin costo",
+          "img": "plan-patient"
+        },
+        {
+          "title": "Salud mental",
+          "content": "30 sesiones por año con copago",
+          "img": "plan-plus"
+        },
+        {
+          "title": "Odontología",
+          "content": "Odontología general y urgencias sin costo. Reintegro para perno y corona (con tope)",
+          "img": "plan-teeth"
+        },
+        {
+          "title": "Asistencia al viajero",
+          "content": "Nacional e internacional",
+          "img": "plan-global"
+        },
+        {
+          "title": "Ópticas",
+          "content": "1 par de anteojos por persona por año en ópticas asociadas",
+          "img": "plan-anteojos"
+        },
+        {
+          "title": "Tratamiento esclerosante",
+          "content": "5 sesiones con medicación por persona",
+          "img": "plan-progress"
+        }
+      ]
+    },
+    {
+      "title": {
+        "data": "Plan Aqua",
+        "image": "plan-aqua",
+        "color": "white",
+        "image_header": "background-plan-aqua",
+        "theme": "latest"
+      },
+      "benefits": [
+        {
+          "title": "Consultas médicas",
+          "content": "Consultas médicas ilimitadas con copago",
+          "img": "plan-hospital"
+        },
+        {
+          "title": "Prácticas y estudios",
+          "content": "Estudios y prácticas diagnósticas con copago",
+          "img": "plan-practice"
+        },
+
+        {
+          "title": "Internación",
+          "content": "En habitación individual en Sanatorio Güemes",
+          "img": "plan-bed"
+        },
+        {
+          "title": "Rehabilitación",
+          "content": "40 sesiones anuales de fisiokinesioterapia y fonoaudiología con copago",
+          "img": "plan-patient"
+        },
+        {
+          "title": "Salud mental",
+          "content": "30 sesiones por año con copago",
+          "img": "plan-plus"
+        },
+        {
+          "title": "Odontología",
+          "content": "Odontología general y urgencias sin costo. Reintegro para perno y corona (con tope)",
+          "img": "plan-teeth"
+        },
+        {
+          "title": "Asistencia al viajero",
+          "content": "Nacional e internacional",
+          "img": "plan-global"
+        },
+        {
+          "title": "Ópticas",
+          "content": "1 par de anteojos por persona por año en ópticas asociadas",
+          "img": "plan-anteojos"
+        },
+        {
+          "title": "Tratamiento esclerosante",
+          "content": "5 sesiones con medicación por persona",
+          "img": "plan-progress"
+        }
+      ]
+    }
+  ]
+}

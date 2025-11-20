@@ -1,0 +1,21 @@
+<footer class="flex justify-center py-10 px-5 bg-primary text-white font-bold">
+  <div class="w-screen max-w-md md:max-w-2xl flex flex-col items-center text-center gap-10 text-normal md:text-lg leading-7">
+    <p>
+      Superintendencia de Servicios de Salud - órgano de Control de
+      Obras Sociales y Entidades de Medicina Privada -
+      0800 222 SALUD (72583)
+
+      <a href="https://www.argentina.gob.ar/sssalud" target="_blank" class="flex justify-center">
+        www.argentina.gob.ar/sssalud
+      </a>
+    </p>
+
+    <a [routerLink]="['/']" class="flex justify-center">
+      <img srcset="/assets/images/logos/elegimejor-w.webp" type="image/webp" width="150" height="27" alt="ElegiMejor Logo Footer">
+    </a>
+
+    <a [routerLink]="['/']">
+      &#64; {{ year }} ELEGIMEJOR
+    </a>
+  </div>
+</footer>

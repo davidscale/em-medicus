@@ -1,0 +1,23 @@
+<div class="w-screen bg-center bg-slate-50">
+  <div class="min-h-[100vh] relative">
+    <app-navbar></app-navbar>
+    
+    <!-- <div class="div-alert-mobile">
+      <p>Página de ElegiMejor, comparador de planes de salud.</p>
+    </div> -->
+
+    <div class="flex flex-col justify-center">
+      <div class="mt-14 md:mt-16">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    @if(loadingSrv.isLoading$ | async) {
+      <app-loading></app-loading>
+    }
+  </div>
+
+  <app-notification></app-notification>
+  <app-whastapp-mobile></app-whastapp-mobile>
+  <app-footer></app-footer>
+</div>
