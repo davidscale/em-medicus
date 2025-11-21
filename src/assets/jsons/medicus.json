@@ -1,7 +1,7 @@
 {
-  "companyId": 65,
-  "key_name": "hominis",
-  "name": "Hominis",
+  "companyId": 67,
+  "key_name": "medicus",
+  "name": "medicus",
   "discount": 20,
 
   "color_primary": "#7755fe",
@@ -10,7 +10,7 @@
 
   "background_any": true,
 
-  "content": "Hominis",
+  "content": "medicus",
   "valid_age": { "min": 18, "max": 59 },
 
   "residences": [
@@ -21,11 +21,11 @@
   ],
 
   "config": {
-    "title": "Hominis - Precios, cartillas y prestaciones",
+    "title": "MEDICUS - Precios, cartillas y prestaciones",
     "meta": [
       {
         "name": "Description",
-        "content": "Conocé los diferentes planes de Hominis. Te asesoramos gratuitamente sobre los precios, la cartilla y las prestaciones de los diferentes planes."
+        "content": "Conocé los diferentes planes de Medicus. Te asesoramos gratuitamente sobre los precios, la cartilla y las prestaciones de los diferentes planes."
       }
     ]
   },

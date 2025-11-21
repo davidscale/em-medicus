@@ -58,7 +58,7 @@ export default class CompanyComponent implements OnInit, OnDestroy {
 
   private getData() {
     //const key_name: string = this.route.snapshot.paramMap.get('key_name') || '';
-    const key_name: string = 'hominis';
+    const key_name: string = 'medicus';
 
     this.companySrv.getOne(key_name)
       .subscribe(data => {
