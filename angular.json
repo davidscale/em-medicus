@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hominis": {
+    "medicus": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,7 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hominis",
+            "outputPath": "dist/medicus",
             "index": "src/index.html",
             "main": "src/main.ts",
             "optimization": true,
@@ -102,10 +102,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hominis:build:production"
+              "buildTarget": "medicus:build:production"
             },
             "development": {
-              "buildTarget": "hominis:build:development"
+              "buildTarget": "medicus:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -113,7 +113,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "hominis:build"
+            "buildTarget": "medicus:build"
           }
         },
         "test": {
@@ -137,7 +137,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/hominis/server",
+            "outputPath": "dist/medicus/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -165,12 +165,12 @@
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "hominis:build:development",
-              "serverTarget": "hominis:server:development"
+              "browserTarget": "medicus:build:development",
+              "serverTarget": "medicus:server:development"
             },
             "production": {
-              "browserTarget": "hominis:build:production",
-              "serverTarget": "hominis:server:production"
+              "browserTarget": "medicus:build:production",
+              "serverTarget": "medicus:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -184,12 +184,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "hominis:build:production",
-              "serverTarget": "hominis:server:production"
+              "browserTarget": "medicus:build:production",
+              "serverTarget": "medicus:server:production"
             },
             "development": {
-              "browserTarget": "hominis:build:development",
-              "serverTarget": "hominis:server:development"
+              "browserTarget": "medicus:build:development",
+              "serverTarget": "medicus:server:development"
             }
           },
           "defaultConfiguration": "production"

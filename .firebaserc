@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "em-hominis",
-    "landing-hominis-test": "landing-hominis-test"
+    "default": "em-medicus",
+    "landing-medicus-test": "landing-medicus-test"
   },
   "targets": {},
   "etags": {}

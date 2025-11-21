@@ -5,15 +5,15 @@
     "ng": "ng",
     "start": "npm run serve:ssr",
     "build": "ng build",
-    "gcp-build": "ng run hominis:server",
+    "gcp-build": "ng run medicus:server",
     "build-webpack": "ng build && webpack",
     "start-webpack": "node dist/main.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run hominis:serve-ssr",
-    "serve:ssr": "node dist/hominis/server/main.js",
-    "build:ssr": "ng build && ng run hominis:server",
-    "prerender": "ng run hominis:prerender"
+    "dev:ssr": "ng run medicus:serve-ssr",
+    "serve:ssr": "node dist/medicus/server/main.js",
+    "build:ssr": "ng build && ng run medicus:server",
+    "prerender": "ng run medicus:prerender"
   },
   "private": true,
   "dependencies": {
