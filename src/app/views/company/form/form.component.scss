@@ -45,7 +45,7 @@
         width: 100%;
         max-width: 450px;
         padding: 20px; 
-        background: #7755fe; 
+        background: #042e75; 
         border-radius: 10px 0px 10px 10px;
         display: flex;
         flex-direction: column;
@@ -83,7 +83,7 @@
                     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);     
                     
                     &::placeholder {
-                        color: #7755fe; 
+                        color: #042e75; 
                     }
                     
                     .razonSocEmp {
@@ -111,7 +111,7 @@
             .form-control:focus {
                 outline: none;
                 border-color: #007bff;
-                box-shadow: 0 0 5px #7755fe96;
+                box-shadow: 0 0 5px #042e75;
             }
         }
 
@@ -154,7 +154,7 @@
         @media (max-width: 650px) { 
             position: relative;
             
-            background: #7755fe;  
+            background: #042e75;  
             // background: linear-gradient(315deg, #422f8f96, #7755fe96); 
 
             border-radius: 0px;

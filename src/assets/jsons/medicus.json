@@ -2,9 +2,9 @@
   "companyId": 67,
   "key_name": "medicus",
   "name": "medicus",
-  "discount": 20,
+  "discount": null,
 
-  "color_primary": "#7755fe",
+  "color_primary": "#042e75",
   "color_primary_dark": "#b5b5b55e",
   "color_secundary": "#F8F8F8",
 
@@ -32,24 +32,9 @@
 
   "needs": [
     {
-      "title": "Particulares o autónomos",
-      "subtitle": "La mejor opción de precio calidad",
-      "img": "need-particular"
-    },
-    {
-      "title": "Monotributistas",
-      "subtitle": "Deriva tus aportes a la obra social y paga menos",
-      "img": "need-monotributista"
-    },
-    {
-      "title": "Personas en relación de dependencias",
-      "subtitle": "Deriva tus aportes a la obra social y paga menos",
-      "img": "need-dependiente"
-    },
-    {
-      "title": "Planes corporativos para empresas",
-      "subtitle": "Te cotizamos el mejor plan para tus empleados",
-      "img": "need-corporativo"
+      "title": "Pax Assistance",
+      "subtitle": "Dtos exclusivos para tus viajes al exterior",
+      "img": "pax-assistance"
     }
   ],
 
@@ -76,16 +61,32 @@
     }
   ],
 
-  "sanatorios": [ 
+  "sanatorios": [  
+    { "name": "otamendi" },
+    { "name": "cemic" },
+    { "name": "bazterrica" },
+    { "name": "bessone" },
+    { "name": "del-sol" },
+    { "name": "san-camilo" },
     { "name": "santa-isabel" },
-    { "name": "clinica-independencia" },
-    { "name": "sanatorio-guemes" },
-    { "name": "clinica-centenario" },
-    { "name": "clinica-montegrande" }
+    { "name": "dim" },
+    { "name": "fleni" },
+    { "name": "fundacionfavaloro" },
+    { "name": "hospital-aleman" },
+    { "name": "hospital-britanico" },
+    { "name": "san-juan-de-dios" },
+    { "name": "austral" },
+    { "name": "iadt" },
+    { "name": "icba" },
+    { "name": "finochietto" },
+    { "name": "itoiz" },
+    { "name": "juncal" },
+    { "name": "materdei" },
+    { "name": "modelo-quilmes" }
   ],
 
   "sanatorio_unico": {
-    "title": "Nuestro <br>Sanatorio Güemes",
+    "title": "seccion sanatorios ...",
     "background": "#eff1f0",
     "image": "sanatorio_guemes"
   },
@@ -93,117 +94,94 @@
   "plans": [
     {
       "title": {
-        "data": "Plan Vita",
-        "image": "plan-vita",
+        "title_plan": "<b>PLAN INTEGRA</b>: La cobertura para tu día a día",
+        "data": "Plan Integra",
+        "image": "plan_integra",
+        "description": "Una cobertura amplia que incluye estudios, salud mental y odontológica, atención primaria y sesiones de kinesiología",
         "color": "white",
         "background": "#7755fe",
         "image_header": "background-plan-vita",
         "theme": "latest"
       },
       "benefits": [
-        {
-          "title": "Consultas médicas ",
-          "content": "Consultas médicas ilimitadas sin ningún costo adicional",
-          "img": "plan-hospital"
-        },
-        {
-          "title": "Prácticas y estudios",
-          "content": "Estudios y prácticas diagnósticas sin cargo",
-          "img": "plan-practice"
-        },
-
-        {
-          "title": "Internación",
-          "content": "En habitación individual en Sanatorio Güemes",
-          "img": "plan-bed"
-        },
-        {
-          "title": "Rehabilitación",
-          "content": "40 sesiones anuales de fisiokinesioterapia y fonoaudiología sin costo",
-          "img": "plan-patient"
-        },
-        {
-          "title": "Salud mental",
-          "content": "30 sesiones por año con copago",
-          "img": "plan-plus"
-        },
-        {
-          "title": "Odontología",
-          "content": "Odontología general y urgencias sin costo. Reintegro para perno y corona (con tope)",
-          "img": "plan-teeth"
-        },
-        {
-          "title": "Asistencia al viajero",
-          "content": "Nacional e internacional",
-          "img": "plan-global"
-        },
-        {
-          "title": "Ópticas",
-          "content": "1 par de anteojos por persona por año en ópticas asociadas",
-          "img": "plan-anteojos"
-        },
-        {
-          "title": "Tratamiento esclerosante",
-          "content": "5 sesiones con medicación por persona",
-          "img": "plan-progress"
-        }
+        { "title": "Sanatorios de primer nivel" },
+        { "title": "Estudios de baja, media y alta complejidad" },
+        { "title": "Atención primaria del médico personal, clínico o pediatra" },
+        { "title": "Cobertura odontológica en centros propios" },
+        { "title": "Psicología y psicopedagogía" },
+        { "title": "Sesiones de Kinesiología" }
       ]
     },
     {
       "title": {
-        "data": "Plan Aqua",
-        "image": "plan-aqua",
+        "title_plan": "<b>PLAN FAMILY</b>: ATENCIÓN EN CADA ETAPA DE TU VIDA",
+        "data": "Plan Family",
+        "image": "plan_family",
+        "description": "Cobertura integral que incluye médico personal, salud mental y odontológica, estudios y asistencia internacional.",
         "color": "white",
-        "image_header": "background-plan-aqua",
+        "background": "#7755fe",
+        "image_header": "background-plan-vita",
         "theme": "latest"
       },
       "benefits": [
-        {
-          "title": "Consultas médicas",
-          "content": "Consultas médicas ilimitadas con copago",
-          "img": "plan-hospital"
-        },
-        {
-          "title": "Prácticas y estudios",
-          "content": "Estudios y prácticas diagnósticas con copago",
-          "img": "plan-practice"
-        },
-
-        {
-          "title": "Internación",
-          "content": "En habitación individual en Sanatorio Güemes",
-          "img": "plan-bed"
-        },
-        {
-          "title": "Rehabilitación",
-          "content": "40 sesiones anuales de fisiokinesioterapia y fonoaudiología con copago",
-          "img": "plan-patient"
-        },
-        {
-          "title": "Salud mental",
-          "content": "30 sesiones por año con copago",
-          "img": "plan-plus"
-        },
-        {
-          "title": "Odontología",
-          "content": "Odontología general y urgencias sin costo. Reintegro para perno y corona (con tope)",
-          "img": "plan-teeth"
-        },
-        {
-          "title": "Asistencia al viajero",
-          "content": "Nacional e internacional",
-          "img": "plan-global"
-        },
-        {
-          "title": "Ópticas",
-          "content": "1 par de anteojos por persona por año en ópticas asociadas",
-          "img": "plan-anteojos"
-        },
-        {
-          "title": "Tratamiento esclerosante",
-          "content": "5 sesiones con medicación por persona",
-          "img": "plan-progress"
-        }
+        { "title": "Sanatorios de primer nivel" },
+        { "title": "30 sesiones anuales de psicología" },
+        { "title": "Estudios de baja, media y alta complejidad" },
+        { "title": "Cobertura odontológica en centros propios" },
+        { "title": "Ortodoncia hasta los 18 años sin cargo" },
+        { "title": "1 par de lentes especiales por persona por año en ópticas adheridas" },
+        { "title": "Psicología y psicopedagogía" },
+        { "title": "50 sesiones anuales de kinesiología" },
+        { "title": "Maternidad y asistencia al recién nacido" },
+        { "title": "Asistencia al viajero por 30 días para todo el grupo familiar - hasta 30.000 dólares o euros" }
+      ]
+    },
+    {
+      "title": {
+        "title_plan": "<b>PLAN CELESTE</b>: MÁS BENEFICIOS, MÁS SALUD",
+        "data": "Plan Celeste",
+        "image": "plan_celeste",
+        "description": "Un plan con reintegros altos, cobertura integral en todo el país, incluyendo estética, odontología, y más beneficios. Altos reintegros",
+        "color": "white",
+        "background": "#7755fe",
+        "image_header": "background-plan-vita",
+        "theme": "latest"
+      },
+      "benefits": [
+        { "title": "Máximos valores de reintegros" },
+        { "title": "30 sesiones de psicología anuales, sin cargo con profesionales de cartilla. Mayores valores de reintegros." },
+        { "title": "Kinesiología sin tope anual" },
+        { "title": "Planes con ortodoncia, sin límite de edad" },
+        { "title": "Prótesis odontológicas - 1 por año y por persona" },
+        { "title": "1 par de lentes especiales por persona por año en ópticas adheridas" },
+        { "title": "3 días de pensión sin cargo para acompañante en Maternidad y Cirugía Mayor" },
+        { "title": "Beneficios Plan Mujer - Cirugía estética, depilación definitiva, etc." },
+        { "title": "Prótesis quirúrgicas importadas" },
+        { "title": "Asistencia al viajero por 30 días para todo el grupo familiar - hasta 30.000 dólares o euros" }
+      ]
+    },
+    {
+      "title": {
+        "title_plan": "<b>PLAN AZUL</b>: EL MEJOR PLAN PARA TU VIDA",
+        "data": "Plan Azul",
+        "image": "plan_azul",
+        "description": "El plan con mayor nivel de reintegros y cobertura en salud estética, mental, dental y asistencia internacional.",
+        "color": "white",
+        "background": "#7755fe",
+        "image_header": "background-plan-vita",
+        "theme": "latest"
+      },
+      "benefits": [
+        { "title": "Máximos valores de reintegros" },
+        { "title": "36 sesiones de psicología anuales, sin cargo con profesionales de cartilla. Mayores valores de reintegros." },
+        { "title": "Kinesiología sin tope anual" },
+        { "title": "Planes con ortodoncia, sin límite de edad" },
+        { "title": "Prótesis odontológicas - 1 por año y por persona" },
+        { "title": "Implantes odontológicos por reintegro" },
+        { "title": "1 par de lentes especiales por persona por año en ópticas adheridas" },
+        { "title": "Beneficios Plan Mujer - Cirugía estética, depilación definitiva, etc." },
+        { "title": "Cirugía estética - Para todo el grupo familiar" },
+        { "title": "Asistencia al viajero por 30 días para todo el grupo familiar - hasta 30.000 dólares o euros" }
       ]
     }
   ]

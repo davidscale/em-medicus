@@ -11,7 +11,7 @@
 
 @layer base {
   html {
-  --color-primary: #7755fe;
+  --color-primary: #042e75;
   --color-secondary: white;
   --color-tertiary: #ff5863;
   --color-tertiary-hover: #ff4d4f;
@@ -23,7 +23,7 @@
   margin: 0;
   padding: 0;
   /* color: var(--color-primary); */
-  font-family: "Roboto-Regular";
+  /* font-family: "Roboto-Regular"; */
 }
 
 html, body {
@@ -220,6 +220,214 @@ body {
 
   }
 
+ 
+  .planes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px;
+
+    /* DESKTOP: cards en fila tipo carrusel fijo */
+    @media (min-width: 900px) {
+      flex-direction: row;
+      flex-wrap: nowrap; 
+      gap: 40px;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+
+      /* Quitar scrollbar feo */
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+    }
+  }
+
+  /* Cada tarjeta individual */
+  .planes-card-wrapper {
+    width: 100%;
+
+    @media (min-width: 900px) {
+      flex: 0 0 380px;    
+      scroll-snap-align: start;
+    }
+  }
+ 
+
+  .planes_card {
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 8px 22px rgba(78, 132, 255, 0.10);
+    padding: 40px 32px;
+    width: 100%;
+    min-height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #062A54;
+    font-family: "Inter", sans-serif;
+
+    &-id img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .planes-card {
+      font-size: 32px;
+      font-weight: 800;
+      text-align: left;
+      color: #003A82;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+
+      
+    }
+
+    .plan_title {
+      color: #042e75;
+      font-size: 30px; 
+      margin: 20px 0px;
+    }
+ 
+
+    .planes_card-id {
+      img {
+        width: 150px;
+      } 
+    }
+
+    .planes-description {
+      font-size: 17px;
+      line-height: 1.45;
+      color: #44556C;
+      text-align: left;
+    }
+
+    .planes_card-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: #062A54;
+        font-size: 16px;
+        line-height: 1.4;        
+      }
+
+      .planes_card-check {        
+          background-color: #3182CE; 
+          border-radius: 100%;
+          display: flex; 
+      }
+      svg {
+          color: white;
+          width: 10px;
+          height: 10px;
+          margin: 5px;
+        }
+ 
+  }
+
+  .plan-flex{
+    max-width: 1200px;
+    border-radius: 20px;
+    padding: 35px;
+    background-color: #6a9ef9;
+    display: flex; 
+    justify-content: center;
+    justify-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .flex-title {
+    color: white;
+    font-size: 50px;
+    font-weight: 900;
+  }
+
+  .flex-subtitle {
+    color: #042e75;
+    font-size: 35px;
+    font-weight: 800;
+
+    margin-bottom: 30px;
+  } 
+
+  
+
+  .flex-items ul li {
+    display: flex; 
+    align-items: baseline;
+    gap: 8px;
+    list-style: none;
+    justify-content: flex-start;
+  }
+
+  .flex-items ul li svg {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    flex-shrink: 0;        
+    color: white;
+    background-color: #042e75;       
+    border-radius: 100%;   
+  }
+      
+
+  .flex-img {
+    img {
+      border-radius: 30px;
+      width: 550px;
+    }
+    
+
+  }
+
+
+  .promo-card {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .promo-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .promo-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    color: #042e75;
+  }
+
+  .promo-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #052B60;
+  }
+
+  .promo-text {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #052B60;
+  } 
+
+
+  
+
 @media (max-width: 650px) {
 
   .descuento {
@@ -304,4 +512,9 @@ body {
     }
 
   }
+
+
+  
+
+
 }

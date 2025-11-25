@@ -28,8 +28,8 @@ export class SanatorioUnico {
 }
 
 export class Plan {
-  title: { data: string, color: string, background: string, image: string, image_header: string }
-  benefits: { title: string; content: string; img: string; }[];
+  title: { data: string, title_plan:string, description:string, color: string, background: string, image: string, image_header: string }
+  benefits: { title: string; }[];
   theme: 'latest' | 'old' = 'old';
 }
 

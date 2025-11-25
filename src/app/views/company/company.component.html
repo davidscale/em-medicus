@@ -5,24 +5,21 @@
         <div class="w-screen flex justify-center bg-[top] md:bg-center bg-no-repeat bg-[length:auto_100vw] md:bg-cover bg-primary" [ngStyle]="{'background-image': 'url(' + data.background + ')'}">
           <div class="w-screen max-w-auto md:max-w-6xl flex flex-col md:flex-row justify-between items-start md:items-center">
             <div class="header-home h-56 md:h-full flex flex-col md:gap-4 text-3xl md:text-5xl font-extrabold text-white pt-2 md:pt-28 relative">
-              <div class="div-alert">
+              <!-- <div class="div-alert">
                 <p>Página de ElegiMejor, comparador de planes de salud.</p>
-              </div>
+              </div> -->
               
-              <p class="py-1 px-2 drop-shadow-lg max-w-[300px] md:lowercase">
-                <span class="hidden md:inline-flex normal-case">Hominis,</span> Con vos en cada
+              <p class="py-1 px-2 drop-shadow-lg max-w-[460px] md:lowercase">
+                <span class="hidden md:inline-flex normal-case">Medicus,</span> Expertos en lo que
               </p>
 
               <p class="flex flex-wrap gap-1">
-                <span class="py-1 px-2 bg-primary">etapa de tu vida</span>
-              </p>
+                <span class="py-1 px-2 bg-primary">te hace bien</span>
+              </p> 
 
-              @if(data.discount) { 
+              
 
-                <!-- <div class="descuento 
-                            w-[230px] md:w-[400px] h-20 md:h-36 
-                            rounded-r-full md:rounded-full bg-[#f5bd00] text-white shadow-lg 
-                            flex items-center justify-around font-semibold select-none"> -->
+              @if(data.discount) {  
                 <div class="descuento 
                             w-[120px] md:w-[150px] h-20 md:h-36 
                             rounded-r-full md:rounded-full bg-[#f5bd00] text-white shadow-lg 
@@ -37,24 +34,9 @@
                       <span class="text-lg absolute bottom-2 md:bottom-none md:bottom-5">OFF</span>
                     </div>
                     <p class="text-sm md:text-lg">3 MESES</p>
-                  </div>
+                  </div> 
 
-                  <!-- Bloque derecho -->
-                  <!-- <div class="bloqueDos">
-                    <p class="text-sm md:text-lg leading-3">HASTA</p> 
-                    <div class="flex relative">
-                      <p class="text-4xl md:text-7xl">20</p>
-                      <span class="text-2xl md:text-2xl md:-mx-1" style="margin-left: 0.25rem; ">%</span>
-                      <span class="text-lg absolute bottom-2 md:bottom-none -right-4 md:-right-5 md:bottom-5">OFF</span>
-                    </div>
-                    <p class="text-sm text-post md:text-lg text-post">3 MESES</p>
-                  </div> -->
-
-                </div>
-
-
-
-                        
+                </div>                        
               }
             </div>
 
@@ -90,14 +72,68 @@
 
       @if(data.plans; as items) {
         <section id="planes" class="flex justify-center py-5" [ngStyle]="{'color': data.color_primary}">
-          <div class="w-screen max-w-[96%] md:max-w-6xl flex justify-center flex-wrap gap-10 py-5">
+          <div class="w-screen max-w-[100%] md:max-w-6xl flex justify-center flex-wrap gap-10 py-5">
             <div [class]="titleLine">
               <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
-                <span>Conoce nuestros planes</span>
+                <span>PLANES FLEXIBLES PARA VOS</span>
               </h2>
             </div>
 
-            <div class="flex flex-col gap-y-8 md:gap-y-14">
+            <div class="planes-container">
+              @for (item of items; track item) {
+                            
+                <div class="planes-card-wrapper relative rounded-3xl" [id]="item.title.data.replace(' ', '-') | lowercase">
+
+                  <div class="planes_card">
+
+                    <div>
+                      <div class="planes_card-id">
+                        <img 
+                          [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
+                          [alt]="'Plan ' + item.title.image + ''"  
+                          loading="lazy">
+                      </div>
+ 
+                      <p class="plan_title" [innerHTML]="item.title.title_plan"></p>
+ 
+                      <p class="plan_description" [innerHTML]="item.title.description"></p>
+
+                      <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
+ 
+                      <div class="planes_card-list px-4 space-y-3">
+                        @for (subitem of item.benefits; track subitem) {
+                          <div class="planes_card-item ">
+                            <div class="planes_card-check">
+                              <div class="planes_card-icon ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none">
+                                  <path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
+                                </svg>
+                              </div>
+                            </div>
+                            <div [innerHTML]="subitem.title"></div>
+                          </div>
+                        }
+                      </div>
+
+                      <!-- BOTÓN -->
+                      <div class="max-w-full px-4 mt-6 mb-4">
+                        <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
+                          {{'COTIZÁ EL PLAN' | uppercase}}
+                        </button>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              }
+            </div>
+
+
+
+
+
+            <!-- <div class="flex flex-col gap-y-8 md:gap-y-14">
               @for (item of items; track item) {
                 <div [id]="item.title.data.replace(' ', '-') | lowercase" class="relative rounded-3xl">
 
@@ -129,12 +165,47 @@
                   </div>
                 </div>
               }
-            </div>
-          </div>
+            </div> -->
+          </div> 
         </section>
       }
 
-      @if(data.benefits; as items) {
+      <section id="planes_flex" class="flex justify-center py-5">
+        <div class="w-screen max-w-[100%] md:max-w-6xl flex justify-center flex-wrap gap-10 py-5">
+            <div class="plan-flex">
+              <div class="flex-info">
+                <p class="flex-title">PLAN FLEX</p>
+                <p class="flex-subtitle">PAGÁ HASTA UN 25% MENOS</p>
+
+                <div class="flex-items">
+                  <ul>
+                    <li> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none"><path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
+                      </svg>
+                      Con cualquier plan (Azul, Celeste, Family o Integra, y reducir el valor de tu cuota mensual)
+                    </li>
+                    <li> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none"><path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
+                      </svg>
+                      Con copago para consultas y estudios
+                    </li>
+                    <li> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none"><path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
+                      </svg>
+                      Sin copago si te atendes en el Centro Medicus Azcuenaga!
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="flex-img">
+                <img src="/assets/images/company/medicus/imgFlex.webp" alt="Plan Flex">
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <!-- @if(data.benefits; as items) {
         <section id="prestaciones" class="flex justify-center py-2" [ngStyle]="{'color': data.color_primary}">
           <div class="w-screen max-w-[96%] md:max-w-[95%] flex justify-center flex-wrap gap-12 py-2">
             <div [class]="titleLine">
@@ -153,29 +224,41 @@
             }
           </div>
         </section>
-      }
+      } -->
 
       @if(data.needs; as items) {
         <section id="tipos" class="flex justify-center py-5 bg-primary" [ngStyle]="{'color': data.color_secundary}">
           <div class="w-screen max-w-[95%] md:max-w-6xl flex justify-between flex-wrap gap-12 py-12">
             <div [class]="titleLine">
               <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-primary">
-                Un plan que se adapta a tus necesidades
+                Beneficios adicionales
               </h2>
             </div>
 
             @for (item of items; track item) {
-              <div class="flex flex-col items-center text-center w-[150px] md:w-[210px]">
+              <!-- <div class="flex flex-col items-center text-center w-[150px] md:w-[210px]">
                 <img [srcset]="'/assets/images/company/any/' + item.img + '.webp'" 
                     [alt]="item.title" width="100" height="100" loading="lazy" type="image/webp">
 
-                <!-- Contenedor solo para el texto -->
+                
                 <div class="flex flex-col text-center mt-2">
                   <p class="text-lg font-semibold">{{item.title}}</p>
                   <p class="text-lg">{{item.subtitle}}</p>
                 </div>
+              </div> -->
+
+              <div class="promo-card">
+                <div class="promo-header">
+                  <img [srcset]="'/assets/images/logos/beneficios/' + item.img + '.webp'" [alt]="item.title" class="promo-logo" />
+                  <span class="promo-title" [innerHTML]="item.title">Pax Assistance</span>
+                </div>
+
+                <p class="promo-text" [innerHTML]="item.subtitle"></p>
               </div>
+
             }
+
+            
 
           </div>
         </section>
