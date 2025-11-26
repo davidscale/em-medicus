@@ -23,7 +23,7 @@ export class Sanatorio {
 
 export class SanatorioUnico {
   title: string;
-  background: string;
+  description: string;
   image: string;
 }
 
@@ -51,6 +51,6 @@ export class Company {
   needs: FullContent[];
   benefits: FullContent[];
   sanatorios: Sanatorio[];
-  sanatorio_unico?: SanatorioUnico;
+  sanatorio_unico?: SanatorioUnico[];
   plans: Plan[];
 }

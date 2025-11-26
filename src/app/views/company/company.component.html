@@ -72,100 +72,68 @@
 
       @if(data.plans; as items) {
         <section id="planes" class="flex justify-center py-5" [ngStyle]="{'color': data.color_primary}">
-          <div class="w-screen max-w-[100%] md:max-w-6xl flex justify-center flex-wrap gap-10 py-5">
-            <div [class]="titleLine">
-              <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
-                <span>PLANES FLEXIBLES PARA VOS</span>
-              </h2>
+          <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5"> 
+
+            <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
+              <div [class]="titleLine">
+                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
+                  PLANES FLEXIBLES PARA VOS
+                </h2>
+              </div>
             </div>
 
-            <div class="planes-container">
-              @for (item of items; track item) {
-                            
-                <div class="planes-card-wrapper relative rounded-3xl" [id]="item.title.data.replace(' ', '-') | lowercase">
-
-                  <div class="planes_card">
-
-                    <div>
-                      <div class="planes_card-id">
-                        <img 
-                          [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
-                          [alt]="'Plan ' + item.title.image + ''"  
-                          loading="lazy">
-                      </div>
- 
-                      <p class="plan_title" [innerHTML]="item.title.title_plan"></p>
- 
-                      <p class="plan_description" [innerHTML]="item.title.description"></p>
-
-                      <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
- 
-                      <div class="planes_card-list px-4 space-y-3">
-                        @for (subitem of item.benefits; track subitem) {
-                          <div class="planes_card-item ">
-                            <div class="planes_card-check">
-                              <div class="planes_card-icon ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none">
-                                  <path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
-                                </svg>
+            
+            <div class="planes-container w-full mx-auto px-4 md:px-0 pt-6">  
+                @for (item of items; track item) {
+                              
+                  <div class="planes-card-wrapper relative rounded-3xl" [id]="item.title.data.replace(' ', '-') | lowercase">
+    
+                    <div class="planes_card">
+    
+                      <div>
+                        <div class="planes_card-id">
+                          <img 
+                            [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
+                            [alt]="'Plan ' + item.title.image + ''"  
+                            loading="lazy">
+                        </div>
+    
+                        <p class="plan_title" [innerHTML]="item.title.title_plan"></p>
+    
+                        <p class="plan_description" [innerHTML]="item.title.description"></p>
+    
+                        <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
+    
+                        <div class="planes_card-list px-4 space-y-3">
+                          @for (subitem of item.benefits; track subitem) {
+                            <div class="planes_card-item ">
+                              <div class="planes_card-check">
+                                <div class="planes_card-icon ">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none">
+                                    <path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
+                                  </svg>
+                                </div>
                               </div>
+                              <div [innerHTML]="subitem.title"></div>
                             </div>
-                            <div [innerHTML]="subitem.title"></div>
-                          </div>
-                        }
+                          }
+                        </div>
+    
+                        <!-- BOTÓN -->
+                        <div class="max-w-full px-4 mt-6 mb-4">
+                          <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
+                            {{'COTIZÁ EL PLAN' | uppercase}}
+                          </button>
+                        </div>
+    
                       </div>
-
-                      <!-- BOTÓN -->
-                      <div class="max-w-full px-4 mt-6 mb-4">
-                        <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
-                          {{'COTIZÁ EL PLAN' | uppercase}}
-                        </button>
-                      </div>
-
+    
                     </div>
-
                   </div>
-                </div>
-              }
+                }
             </div>
+ 
 
-
-
-
-
-            <!-- <div class="flex flex-col gap-y-8 md:gap-y-14">
-              @for (item of items; track item) {
-                <div [id]="item.title.data.replace(' ', '-') | lowercase" class="relative rounded-3xl">
-
-                  <div class="shadow-lg h-full min-h-96 bg-primary text-white rounded-3xl flex items-between flex-col md:flex-row">
-                    <div
-                      class="w-full md:w-6/12 h-6/12 min-h-44 md:min-h-auto md:h-full bg-top bg-no-repeat bg-cover rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none"
-                      [ngStyle]="{'background-image': 'url(' + '/assets/images/company/' + data.key_name + '/' + item.title.image_header + '.webp' + ')'}">
-                    </div>
-
-                    <div class="w-full md:w-6/12 p-5">
-                      <h3 class="text-2xl	font-extrabold">{{item.title.data}}</h3>
-
-                      <div class="max-w-5xl w-full md:w-4/5 flex justify-between flex-wrap gap-y-1 font-bold mt-4 mb-6">
-                        @for (subitem of item.benefits; track subitem) {
-                          <div class="w-full flex items-center gap-x-3">
-                            <img class="w-[60px] h-16 rounded-lg bg-white" [src]="'/assets/images/company/' + data.key_name + '/' + subitem.img + '.svg'" alt="Icon">
-
-                            <div class="leading-5">
-                              <p class="mt-1" [innerHTML]="subitem.title"></p>
-                              <span class="text-sm" [innerHTML]="subitem.content"></span>
-                            </div>
-                          </div>
-                        }
-                      </div>
-
-                      <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full md:w-22 h-11" (click)="scrollTop()">{{'cotizá el plan' | uppercase}}</button>
-                    </div>
-
-                  </div>
-                </div>
-              }
-            </div> -->
           </div> 
         </section>
       }
@@ -203,100 +171,67 @@
               </div>
             </div>
           </div>
-      </section>
-
-      <!-- @if(data.benefits; as items) {
-        <section id="prestaciones" class="flex justify-center py-2" [ngStyle]="{'color': data.color_primary}">
-          <div class="w-screen max-w-[96%] md:max-w-[95%] flex justify-center flex-wrap gap-12 py-2">
-            <div [class]="titleLine">
-              <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
-                <span>Prestaciones principales</span>
-              </h2>
-            </div>
-
-            @for (item of items; track item) {
-              <div class="flex flex-col justify-content-start items-center text-center w-[calc(100% / 2.2)] md:w-[300px]" [ngStyle]="{'color': data.color_primary}">
-                <img [srcset]="'/assets/images/company/any/' + item.img + '.webp'" class="rounded-full bg-primary mb-4" [alt]="item.title" [width]="100" [height]="100" loading="lazy" type="image/webp">
-
-                <p class="-mt-1.5 font-black text-lg">{{item.title}}</p>
-                <p class="text-sm text-gray-500">{{item.subtitle}}</p>
-              </div>
-            }
-          </div>
-        </section>
-      } -->
+      </section> 
 
       @if(data.needs; as items) {
         <section id="tipos" class="flex justify-center py-5 bg-primary" [ngStyle]="{'color': data.color_secundary}">
-          <div class="w-screen max-w-[95%] md:max-w-6xl flex justify-between flex-wrap gap-12 py-12">
-            <div [class]="titleLine">
-              <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-primary">
-                Beneficios adicionales
-              </h2>
-            </div>
-
-            @for (item of items; track item) {
-              <!-- <div class="flex flex-col items-center text-center w-[150px] md:w-[210px]">
-                <img [srcset]="'/assets/images/company/any/' + item.img + '.webp'" 
-                    [alt]="item.title" width="100" height="100" loading="lazy" type="image/webp">
-
-                
-                <div class="flex flex-col text-center mt-2">
-                  <p class="text-lg font-semibold">{{item.title}}</p>
-                  <p class="text-lg">{{item.subtitle}}</p>
-                </div>
-              </div> -->
-
-              <div class="promo-card">
-                <div class="promo-header">
-                  <img [srcset]="'/assets/images/logos/beneficios/' + item.img + '.webp'" [alt]="item.title" class="promo-logo" />
-                  <span class="promo-title" [innerHTML]="item.title">Pax Assistance</span>
-                </div>
-
-                <p class="promo-text" [innerHTML]="item.subtitle"></p>
+          <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5">
+            <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
+              <div [class]="titleLine">
+                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-primary">
+                  Beneficios adicionales
+                </h2>
               </div>
 
-            }
+            </div>
 
-            
-
+            <owl-carousel-o [options]="customOptionsBeneficios" class="w-full" style="padding: 0px 25px;">
+              @for (item of items; track item) {
+                <ng-template carouselSlide>
+                  <div class="promo-card">
+                    <div class="promo-header">
+                      <img [srcset]="'/assets/images/logos/beneficios/' + item.img + '.webp'" [alt]="item.title" class="promo-logo" />
+                      <span class="promo-title" [innerHTML]="item.title"></span>
+                    </div>
+    
+                    <p class="promo-text" [innerHTML]="item.subtitle"></p>
+                  </div>
+                </ng-template>
+              } 
+            </owl-carousel-o> 
+ 
           </div>
         </section>
       }
 
-      @if(data.sanatorio_unico; as item) {
-        <section id="sanatorio" class="flex justify-center py-4 md:p-2" [ngStyle]="{'background': item.background}">
-          <div class="w-screen max-w-[96%] md:max-w-6xl h-auto flex flex-col py-4 md:flex-row justify-center gap-10 md:gap-none text-center md:text-start">
+      @if(data.sanatorio_unico; as centros) {
+        <section id="sanatorio" class="flex justify-center py-5" [ngStyle]="{'color': data.color_primary}">
+          <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5">
 
-            <div class="w-full md:w-6/12 flex flex-col justify-center items-center md:items-start gap-2">
-              <h2 class="font-bold text-primary text-2xl md:text-3xl leading-8 max-w-xl">
-                <span [innerHTML]="item.title"></span>
-              </h2>
+            <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
+              <div [class]="titleLine">
+                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
+                  Centros Medicus Propios
+                </h2>
+              </div>
+            </div> 
 
-              <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-80 h-11" (click)="scrollTop()">{{'CONOCE MÁS' | uppercase}}</button>
-            </div>
+            <div class="grid-centros w-full max-w-6xl mx-auto px-4 md:px-0 pt-6">
+              @for (centro of centros; track centro) {
+                <div class="centro-card">
+                  <img class="centro-img"
+                    [src]="'/assets/images/company/medicus/centros/' + centro.image + '.webp'"
+                    [alt]="centro.title"
+                  />
 
-            <div class="w-full md:w-6/12">
-              <img [srcset]="'/assets/images/company/' + data.key_name + '/' + item.image + '.webp' | lowercase" width="480" height="480" loading="lazy">
-            </div>
+                  <h3 class="centro-title">{{ centro.title }}</h3>
+                  <p class="centro-desc">{{ centro.description }}</p>
+                </div>
+              }
+            </div> 
 
           </div>
         </section>
-      }
-
-      @if(1 == 1) {
-        <section id="footer" class="flex justify-center items-center py-5">
-          <!-- Imagen para mobile -->
-          <img [srcset]="'/assets/images/company/' + data.key_name + '/footer_credencial_mobile.webp' | lowercase"
-              class="w-full block md:hidden"
-              loading="lazy">
-
-          <!-- Imagen para desktop -->
-          <img [srcset]="'/assets/images/company/' + data.key_name + '/footer_credencial.webp' | lowercase"
-              class="w-full hidden md:block"
-              loading="lazy">
-        </section>
-
-      }
+      } 
     </div>
 }

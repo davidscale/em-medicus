@@ -48,6 +48,29 @@ export default class CompanyComponent implements OnInit, OnDestroy {
       0: { items: 2 },
       750: { items: 5 },
     },
+  } 
+
+  public customOptionsBeneficios: OwlOptions = {
+    loop: true,
+    rewind: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    navSpeed: 700,
+    nav: true,       
+    navText: [
+      '<i class="fa fa-chevron-left"></i>',
+      '<i class="fa fa-chevron-right"></i>'
+    ],           
+    dots: false,                
+    autoplay: false,            
+    responsive: {
+      0: { items: 1.1 },      // 1 tarjeta + parte de otra
+      600: { items: 2.3 },    // más ancho
+      1000: { items: 2.6 },     // 3 total
+      1200: { items: 3.1 },
+      1600: { items: 3.5 },
+    }
   }
 
   protected titleLine = titleLine;

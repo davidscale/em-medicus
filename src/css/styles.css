@@ -220,29 +220,29 @@ body {
 
   }
 
- 
+  
+
   .planes-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 30px;
-    padding: 10px;
+ 
+    grid-template-columns: 1fr;
+    margin: 0px 25px;
 
-    /* DESKTOP: cards en fila tipo carrusel fijo */
-    @media (min-width: 900px) {
-      flex-direction: row;
-      flex-wrap: nowrap; 
-      gap: 40px;
-      padding-bottom: 20px;
-      scroll-snap-type: x mandatory;
+    @media (min-width: 850px) and (max-width: 1349px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-      /* Quitar scrollbar feo */
-      &::-webkit-scrollbar {
-        height: 0;
-      }
+    @media (min-width: 1350px) and (max-width: 1599px) {
+      grid-template-columns: repeat(3, 1fr); 
+    }
+
+    @media (min-width: 1600px) {
+      grid-template-columns: repeat(4, 1fr); 
     }
   }
 
-  /* Cada tarjeta individual */
+   
   .planes-card-wrapper {
     width: 100%;
 
@@ -251,7 +251,6 @@ body {
       scroll-snap-align: start;
     }
   }
- 
 
   .planes_card {
     background: #ffffff;
@@ -385,30 +384,32 @@ body {
   }
 
 
+
+
   .promo-card {
     width: 100%;
-    max-width: 500px;
+    max-width: 620px;         
+    height: 260px;            
     background: #ffffff;
     border-radius: 20px;
-    padding: 28px;
-    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px 32px;
+    box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.06);
     display: flex;
-    flex-direction: column;
-    gap: 18px;
+    flex-direction: column; 
+    gap: 20px;
   }
 
   .promo-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .promo-logo {
-    width: 45px;
-    height: 45px;
+    width: 55px !important;
+    height: 55px;
     border-radius: 50%;
-    object-fit: cover;
-    color: #042e75;
+    object-fit: cover; 
   }
 
   .promo-title {
@@ -425,6 +426,61 @@ body {
     color: #052B60;
   } 
 
+  .owl-carousel .owl-stage {
+    display: flex;
+    gap: 20px !important;   
+  }
+
+  .grid-centros {
+    display: grid;
+    gap: 30px;
+ 
+    grid-template-columns: 1fr;
+
+    @media (min-width: 850px) and (max-width: 1249px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1250px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .centro-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+    cursor: pointer;
+    padding-bottom: 18px;
+    text-align: center;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
+    }
+  }
+
+  .centro-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .centro-title {
+    margin-top: 14px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #052B60;
+  }
+
+  .centro-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #052B60;
+    opacity: 0.8;
+  }
 
   
 
@@ -512,6 +568,14 @@ body {
     }
 
   }
+
+  .planes-container {
+    margin: 0px 5px;
+  }
+
+   .flex-img {
+    display: none;
+   }
 
 
   

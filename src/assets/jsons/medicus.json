@@ -30,11 +30,46 @@
     ]
   },
 
-  "needs": [
+  "needs": [ 
+    {
+      "title": "OnFit",
+      "subtitle": "40% de descuento en tu plan mensual",
+      "img": "onfit"
+    },
+    {
+      "title": "Matercell",
+      "subtitle": "100% de cobertura en la extracción y recolección de células madre de cordón umbilical",
+      "img": "matercell"
+    },
+    {
+      "title": "UADE",
+      "subtitle": "15% de ahorro en Posgrados",
+      "img": "uade"
+    },
+    {
+      "title": "UMAI",
+      "subtitle": "10% de ahorro en carreras de pregrado, grado y posgrado",
+      "img": "umai"
+    },
+    {
+      "title": "UADE",
+      "subtitle": "25% de ahorro en la Especialización en Comunicación Corporativa y la Especialización en Business & Technology Management",
+      "img": "uade"
+    },
     {
       "title": "Pax Assistance",
       "subtitle": "Dtos exclusivos para tus viajes al exterior",
       "img": "pax-assistance"
+    },
+    {
+      "title": "Fiter",
+      "subtitle": "30% de ahorro en planes",
+      "img": "fiter"
+    },
+    {
+      "title": "Megatlon",
+      "subtitle": "30% de ahorro en planes",
+      "img": "megatlon"
     }
   ],
 
@@ -85,11 +120,63 @@
     { "name": "modelo-quilmes" }
   ],
 
-  "sanatorio_unico": {
-    "title": "seccion sanatorios ...",
-    "background": "#eff1f0",
-    "image": "sanatorio_guemes"
-  },
+  "sanatorio_unico": [
+    {
+      "title": "CENTRO MEDICUS AZCUÉNAGA",
+      "description": "Azcuénaga 910 - CABA",
+      "image": "centro-medicus-azcuenagas"
+    },
+    {
+      "title": "CENTRO MEDICUS BELGRANO",
+      "description": "Cuba 1886 - CABA",
+      "image": "centro-medicus-belgrano"
+    },
+    {
+      "title": "CENTRO MEDICUS LOMAS DE SAN ISIDRO",
+      "description": "Gorriti 25 - Provincia de Buenos Aires",
+      "image": "centro-medicus-lomasdesanisdro"
+    },
+    {
+      "title": "CENTRO MEDICUS LOMAS DE ZAMORA",
+      "description": "Bartolomé Mitre 283 - Buenos Aires",
+      "image": "centro-medicus-lomasdezamora"
+    },
+    {
+      "title": "CENTRO MEDICUS MAR DEL PLATA",
+      "description": "Martín Miguel de Güemes 2474 - Provincia de Buenos Aires",
+      "image": "centro-medicus-mardelplata"
+    },
+    {
+      "title": "CENTRO MEDICUS MORÓN",
+      "description": "Almirante Brown 428 - Buenos Aires",
+      "image": "centro-medicus-moron"
+    },
+    {
+      "title": "CENTRO MEDICUS ODONTÓLOGICO",
+      "description": "Azcuénaga 910 - CABA",
+      "image": "centro-medicus-odontologico"
+    },
+    {
+      "title": "CENTRO MEDICUS UMAI",
+      "description": "Hidalgo 805 - CABA",
+      "image": "centro-medicus-umai"
+    },
+    {
+      "title": "CENTRO DE PROGRAMAS ESPECIALES",
+      "description": "Juncal 2184 - CABA",
+      "image": "centro-programas-especiales"
+    },
+    {
+      "title": "CONSULTORIOS ODONTOLÓGICOS AYACUCHO",
+      "description": "Ayacucho 1889 - CABA",
+      "image": "consultorios-odontologico-ayacucho"
+    },
+    {
+      "title": "CONSULTORIOS ODONTOLÓGICOS MEDICUS-UMAI",
+      "description": "Hidalgo 805 - CABA",
+      "image": "consultorios-odontologicos-medicusumai"
+    }
+  ],
 
   "plans": [
     {
