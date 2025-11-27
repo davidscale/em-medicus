@@ -10,7 +10,7 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class WhastappMobileComponent implements OnInit {
   public wspNumber: string;
-  public companyName: string = 'Hominis';
+  public companyName: string = 'Medicus';
   public link: string;
 
   private companySrv = inject(CompanyService);
