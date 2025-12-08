@@ -75,6 +75,14 @@ export default class CompanyComponent implements OnInit, OnDestroy {
 
   protected titleLine = titleLine;
 
+  public itemsPres = [
+    { title: "Cobertura Médica Integral", subtitle: null, img: "cobrertura_medica" }, 
+    { title: "Consulta médica por Videollamada", subtitle: null, img: "videollamadas" },
+    { title: "Odontología General al 100%", subtitle: null, img: "odontologia" },
+    { title: "Emergencias Médicas las 24 hs", subtitle: null, img: "emergencia" },
+    { title: "Gestiones online", subtitle: null, img: "gestion_online" }
+  ];
+
   ngOnInit(): void {
     this.getData();
   }

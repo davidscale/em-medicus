@@ -2,12 +2,9 @@
   <div class="w-screen max-w-6xl flex justify-between items-center relative">
     @if(company; as c) {
       <a [routerLink]="['/']">
-        <img [srcset]="'/assets/images/company/' + c.key_name + '/logo.webp'" [alt]="c.name + ' logo'" [width]="160" [height]="50" type="image/webp" loading="lazy">
+        <img [srcset]="'/assets/images/company/' + c.key_name + '/logo.webp'" [alt]="c.name + ' logo'" [width]="120" [height]="22" type="image/webp" loading="lazy">
       </a> 
-    }
-    @else {
-      <div></div>
-    }
+    } 
 
     <a [routerLink]="['/']">
       @if(onTop) {

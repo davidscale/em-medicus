@@ -9,12 +9,18 @@
                 <p>Página de ElegiMejor, comparador de planes de salud.</p>
               </div> -->
               
-              <p class="py-1 px-2 drop-shadow-lg max-w-[460px] md:lowercase">
+              <!-- <p class="py-1 px-2 drop-shadow-lg max-w-[460px] md:lowercase">
                 <span class="hidden md:inline-flex normal-case">Medicus,</span> Expertos en lo que
+              </p> -->
+
+              <!-- <p class="py-1 px-2 drop-shadow-lg max-w-[560px]">Expertos en lo que</p> -->
+              
+              <p class="uppercase md:normal-case py-1 px-2 drop-shadow-lg max-w-[560px]">
+                Expertos en lo que
               </p>
 
               <p class="flex flex-wrap gap-1">
-                <span class="py-1 px-2 bg-primary">te hace bien</span>
+                <span class="uppercase md:normal-case py-1 px-2 bg-primary">te hace bien</span>
               </p> 
 
               
@@ -47,11 +53,33 @@
         </div>
       }
 
+      <section id="backgroun_prestaciones" class="flex justify-center" [ngStyle]="{'color': data.color_primary}">
+        <div class="doctor_prestaciones w-screen max-w-[100%] flex justify-center flex-wrap gap-10">  
+          <div class="prestaciones-grid d-flex justify-content-center flex-wrap">
+            @for (item of itemsPres; track item) { 
+              <div class="prestacion d-flex flex-column align-items-center">
+                <picture>
+                  <img [srcset]="'/assets/images/company/medicus/' + item.img + '.webp'" [alt]="item.title" loading="lazy" type="image/webp">
+                </picture>
+                <p class="title">{{item.title}}</p>
+                <p class="subtitle">{{item.subtitle}}</p>
+              </div>
+            }
+          </div>
+
+
+          <div class="doctor-image">
+            <img src="/assets/images/company/medicus/background_prestaciones.webp" class="img-desktop" alt="prestaciones" loading="lazy" type="image/webp">   
+          <img src="/assets/images/company/medicus/background_prestaciones_mobile.webp" class="img-mobile" alt="prestaciones" loading="lazy" type="image/webp"> 
+          </div>
+        </div> 
+      </section>
+
       @if(data.sanatorios; as items) {
-        <section id="sanatorios" class="flex justify-center py-5 bg-[#4837bf] md:bg-primary" [ngStyle]="{'color': data.color_secundary}">
-          <div class="w-screen max-w-[96%] md:max-w-6xl flex justify-between items-center flex-wrap gap-12 py-12 bg-[#4837bf] md:bg-primary">
+        <section id="sanatorios" class="flex justify-center py-5 bg-primary md:bg-primary" [ngStyle]="{'color': data.color_secundary}">
+          <div class="w-screen max-w-[96%] md:max-w-6xl flex justify-between items-center flex-wrap gap-12 py-12 bg-[#042e75] md:bg-primary">
             <div [class]="titleLine">
-              <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-[#4837bf] md:bg-primary">
+              <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-[#042e75] md:bg-primary">
                 Sanatorios de la Cartilla
               </h2>
             </div>
@@ -74,23 +102,30 @@
         <section id="planes" class="flex justify-center py-5" [ngStyle]="{'color': data.color_primary}">
           <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5"> 
 
-            <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
+            <!-- <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
               <div [class]="titleLine">
-                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
+                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 " [ngStyle]="{'background': data.color_secundary}">
                   PLANES FLEXIBLES PARA VOS
                 </h2>
               </div>
-            </div>
-
+            </div> -->
+            <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 text-center md:text-left">
+              <span class="block md:inline">
+                PLANES FLEXIBLES
+              </span>
+              <span class="block md:inline text-[#69a7ff] md:text-inherit md:text-[#69a7ff]">
+                PARA VOS
+              </span>
+            </h2>
             
-            <div class="planes-container w-full mx-auto px-4 md:px-0 pt-6">  
+            <div class="planes-container w-full mx-auto px-4 md:px-0">  
                 @for (item of items; track item) {
                               
-                  <div class="planes-card-wrapper relative rounded-3xl" [id]="item.title.data.replace(' ', '-') | lowercase">
+                  <div class="planes-card-wrapper relative rounded-2xl" [id]="item.title.data.replace(' ', '-') | lowercase">
     
                     <div class="planes_card">
     
-                      <div>
+                      <div class="planes_content">
                         <div class="planes_card-id">
                           <img 
                             [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
@@ -104,7 +139,7 @@
     
                         <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
     
-                        <div class="planes_card-list px-4 space-y-3">
+                        <div class="planes_card-list space-y-3">
                           @for (subitem of item.benefits; track subitem) {
                             <div class="planes_card-item ">
                               <div class="planes_card-check">
@@ -117,15 +152,16 @@
                               <div [innerHTML]="subitem.title"></div>
                             </div>
                           }
-                        </div>
+                        </div>   
+                        
     
-                        <!-- BOTÓN -->
-                        <div class="max-w-full px-4 mt-6 mb-4">
-                          <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
-                            {{'COTIZÁ EL PLAN' | uppercase}}
-                          </button>
-                        </div>
-    
+                      </div>
+
+                      <!-- BOTÓN -->
+                      <div class="max-w-full planes_footer">
+                        <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
+                          {{'COTIZÁ EL PLAN' | uppercase}}
+                        </button>
                       </div>
     
                     </div>
@@ -138,8 +174,8 @@
         </section>
       }
 
-      <section id="planes_flex" class="flex justify-center py-5">
-        <div class="w-screen max-w-[100%] md:max-w-6xl flex justify-center flex-wrap gap-10 py-5">
+      <section id="planes_flex" class="flex justify-center py-3 md:py-6">
+        <div class="w-screen max-w-[100%] md:max-w-6xl flex justify-center flex-wrap gap-10">
             <div class="plan-flex">
               <div class="flex-info">
                 <p class="flex-title">PLAN FLEX</p>
@@ -174,11 +210,11 @@
       </section> 
 
       @if(data.needs; as items) {
-        <section id="tipos" class="flex justify-center py-5 bg-primary" [ngStyle]="{'color': data.color_secundary}">
+        <section id="tipos" class="container-benefits flex justify-center bg-primary" [ngStyle]="{'color': data.color_secundary}">
           <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5">
             <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
               <div [class]="titleLine">
-                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide bg-primary">
+                <h2 class="px-0 md:px-4 font-bold text-3xl md:text-4xl leading-8 tracking-wide bg-primary">
                   Beneficios adicionales
                 </h2>
               </div>
@@ -205,18 +241,18 @@
       }
 
       @if(data.sanatorio_unico; as centros) {
-        <section id="sanatorio" class="flex justify-center py-5" [ngStyle]="{'color': data.color_primary}">
-          <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5">
+        <section id="sanatorio" class="container-sanatorium flex justify-center" [ngStyle]="{'color': data.color_primary}">
+          <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-5">
 
             <div class="w-screen max-w-[100%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
               <div [class]="titleLine">
-                <h2 class="px-0 md:px-4 font-bold text-2xl md:text-3xl leading-8 tracking-wide" [ngStyle]="{'background': data.color_secundary}">
+                <h2 class="px-0 md:px-4 font-bold text-3xl md:text-4xl leading-8 " [ngStyle]="{'background': data.color_secundary}">
                   Centros Medicus Propios
                 </h2>
               </div>
             </div> 
 
-            <div class="grid-centros w-full max-w-6xl mx-auto px-4 md:px-0 pt-6">
+            <div class="grid-centros w-full max-w-6xl mx-auto px-4 md:px-0">
               @for (centro of centros; track centro) {
                 <div class="centro-card">
                   <img class="centro-img"

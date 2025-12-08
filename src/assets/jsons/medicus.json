@@ -98,6 +98,9 @@
 
   "sanatorios": [  
     { "name": "otamendi" },
+    { "name": "consultoriosazcuenaga" },
+    { "name": "trinidadquilmes" },
+    { "name": "trinidadramosmejia" },
     { "name": "cemic" },
     { "name": "bazterrica" },
     { "name": "bessone" },
@@ -181,7 +184,7 @@
   "plans": [
     {
       "title": {
-        "title_plan": "<b>PLAN INTEGRA</b>: La cobertura para tu día a día",
+        "title_plan": "<b>INTEGRA</b>: LA COBERTURA PARA TU DÍA A DÍA",
         "data": "Plan Integra",
         "image": "plan_integra",
         "description": "Una cobertura amplia que incluye estudios, salud mental y odontológica, atención primaria y sesiones de kinesiología",
@@ -201,7 +204,7 @@
     },
     {
       "title": {
-        "title_plan": "<b>PLAN FAMILY</b>: ATENCIÓN EN CADA ETAPA DE TU VIDA",
+        "title_plan": "<b>FAMILY</b>: ATENCIÓN EN CADA ETAPA DE TU VIDA",
         "data": "Plan Family",
         "image": "plan_family",
         "description": "Cobertura integral que incluye médico personal, salud mental y odontológica, estudios y asistencia internacional.",
@@ -225,7 +228,7 @@
     },
     {
       "title": {
-        "title_plan": "<b>PLAN CELESTE</b>: MÁS BENEFICIOS, MÁS SALUD",
+        "title_plan": "<b>CELESTE</b>: MÁS BENEFICIOS, MÁS SALUD",
         "data": "Plan Celeste",
         "image": "plan_celeste",
         "description": "Un plan con reintegros altos, cobertura integral en todo el país, incluyendo estética, odontología, y más beneficios. Altos reintegros",
@@ -249,7 +252,7 @@
     },
     {
       "title": {
-        "title_plan": "<b>PLAN AZUL</b>: EL MEJOR PLAN PARA TU VIDA",
+        "title_plan": "<b>AZUL</b>: EL MEJOR PLAN PARA TU VIDA",
         "data": "Plan Azul",
         "image": "plan_azul",
         "description": "El plan con mayor nivel de reintegros y cobertura en salud estética, mental, dental y asistencia internacional.",
