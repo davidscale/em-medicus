@@ -1,5 +1,5 @@
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ViewEncapsulation } from '@angular/core';
 
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CompanyService } from 'src/app/services/company.service';
@@ -12,6 +12,7 @@ import { titleLine } from 'src/app/shared/interfaces/tailwind-class';
   selector: 'app-company',
   templateUrl: './company.component.html',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     RouterLink,
     FormComponent,
@@ -30,6 +31,8 @@ export default class CompanyComponent implements OnInit, OnDestroy {
   private companySrv = inject(CompanyService);
 
   public companyFullData: any = null;
+
+  public ismobile = false;
 
   // carousel's configuration
   public customOptions: OwlOptions = {
@@ -50,20 +53,51 @@ export default class CompanyComponent implements OnInit, OnDestroy {
     },
   } 
 
+  public customOptionsPlanes: OwlOptions = {
+    loop: false,
+    rewind: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    navSpeed: 600,
+    nav: true,
+    navText: ['←', '→'],
+    dots: false,
+
+    responsive: {
+      0: {
+        items: 1.1
+      },
+      600: {
+        items: 2.2
+      },
+      1000: {
+        items: 2.5
+      },
+      1200: {
+        items: 3.5
+      },
+      1400: {
+        items: 4,
+        mouseDrag: false,
+        touchDrag: false,
+        pullDrag: false,
+        nav: false
+      }
+    }
+  };
+
+
   public customOptionsBeneficios: OwlOptions = {
     loop: true,
     rewind: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    navSpeed: 700,
-    nav: true,       
-    navText: [
-      '<i class="fa fa-chevron-left"></i>',
-      '<i class="fa fa-chevron-right"></i>'
-    ],           
-    dots: false,                
-    autoplay: false,            
+    navSpeed: 700,   
+    autoHeight: false,
+    autoWidth: false,
+    autoplayHoverPause: true,            
     responsive: {
       0: { items: 1.1 },      // 1 tarjeta + parte de otra
       600: { items: 2.3 },    // más ancho
@@ -85,6 +119,7 @@ export default class CompanyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getData();
+    this.checkScreen();
   }
 
   private getData() {
@@ -137,5 +172,9 @@ export default class CompanyComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.companySrv.removeCurrent();
+  }
+
+  checkScreen() {
+    this.ismobile = window.innerWidth <= 768;
   }
 }
