@@ -1,5 +1,5 @@
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CompanyService } from 'src/app/services/company.service';
@@ -177,4 +177,16 @@ export default class CompanyComponent implements OnInit, OnDestroy {
   checkScreen() {
     this.ismobile = window.innerWidth <= 768;
   }
+
+  @ViewChild('plansTrack') plansTrack!: ElementRef<HTMLDivElement>;
+
+  scrollLeft() {
+    const el = this.plansTrack.nativeElement;
+    el.scrollBy({ left: -el.clientWidth, behavior: 'smooth' });
+  }
+
+  scrollRight() {
+    const el = this.plansTrack.nativeElement;
+    el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
+  } 
 }

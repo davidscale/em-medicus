@@ -165,65 +165,74 @@
               </div>
             }
 
-            @if (!ismobile) {
-              <owl-carousel-o [options]="customOptionsPlanes" class="w-full" style="padding: 0px 35px;">
-                @for (item of items; track item) {
-                  <ng-template carouselSlide>
-                    <div class="planes-container-desktop w-full mx-auto px-4 md:px-0">  
-                                  
-                      <div class="planes-card-wrapper relative rounded-2xl" [id]="item.title.data.replace(' ', '-') | lowercase">
-        
-                        <div class="planes_card-desktop">
-        
-                          <div class="planes_content">
-                            <div class="planes_card-id">
-                              <img 
-                                [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
-                                [alt]="'Plan ' + item.title.image + ''"  
-                                loading="lazy">
-                            </div>
-        
-                            <p class="plan_title" [innerHTML]="item.title.title_plan"></p>
-        
-                            <p class="plan_description" [innerHTML]="item.title.description"></p>
-        
-                            <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
-        
-                            <div class="planes_card-list space-y-3">
-                              @for (subitem of item.benefits; track subitem) {
-                                <div class="planes_card-item ">
-                                  <div class="planes_card-check">
-                                    <div class="planes_card-icon ">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 8 8" fill="none">
-                                        <path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5" stroke="currentColor" stroke-width="1.25"></path>
-                                      </svg>
-                                    </div>
-                                  </div>
-                                  <div [innerHTML]="subitem.title"></div>
-                                </div>
-                              }
-                            </div>   
-                            
-        
-                          </div>
-    
-                          <!-- BOTÓN -->
-                          <div class="max-w-full planes_footer">
-                            <button class="btn rounded-lg shadow-lg font-bold tracking-wider bg-[#ff5863] text-white w-full h-11" (click)="scrollTop()">
-                              {{'COTIZÁ EL PLAN' | uppercase}}
-                            </button>
-                          </div>
-        
-                        </div>
-                      </div>
-                    </div>
-                  </ng-template>
-                }
-              </owl-carousel-o>
-            }
-            
- 
+            @if (!ismobile) { 
+              <div class="plans-carousel-wrapper w-screen md:max-w-[95%] flex justify-center flex-wrap gap-10 py-5 ">
 
+                <div class="button-container">
+                  <button class="carousel-btn left" (click)="scrollLeft()">‹</button>
+                  <button class="carousel-btn right" (click)="scrollRight()">›</button>
+                </div>
+                 
+                <div class="plans-carousel">
+                  <div class="plans-track" #plansTrack>
+                    @for (item of items; track item) {
+  
+                      <div class="plans-slide">
+   
+                        <div class="planes-container-desktop mx-auto">  
+                          <div class="planes-card-wrapper relative rounded-2xl" id]="item.title.data.replace(' ', '-') | lowercase">
+  
+                            <div class="planes_card-desktop">
+  
+                              <div class="planes_content">
+                                <div class="planes_card-id">
+                                  <img 
+                                    [src]="'/assets/images/company/' + data.key_name + '/' + item.title.image + '.webp'"
+                                    [alt]="'Plan ' + item.title.image"
+                                    loading="lazy">
+                                </div>
+  
+                                <p class="plan_title" [innerHTML]="item.title.title_plan"></p>
+                                <p class="plan_description" [innerHTML]="item.title.description"></p>
+  
+                                <div class="planes_card-line my-5 w-full h-[1px] bg-gray-300"></div>
+  
+                                <div class="planes_card-list space-y-3">
+                                  @for (subitem of item.benefits; track subitem) {
+                                    <div class="planes_card-item">
+                                      <div class="planes_card-check">
+                                        <div class="planes_card-icon">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8">
+                                            <path d="M0.667969 4.41667L2.7513 6.5L7.33464 1.5"
+                                                  stroke="currentColor" stroke-width="1.25" />
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div [innerHTML]="subitem.title"></div>
+                                    </div>
+                                  }
+                                </div>
+                              </div>
+  
+                              <div class="planes_footer">
+                                <button class="btn bg-[#ff5863] text-white w-full h-11"
+                                        (click)="scrollTop()">
+                                  {{ 'COTIZÁ EL PLAN' | uppercase }}
+                                </button>
+                              </div>
+  
+                            </div>
+                          </div>
+                        </div> 
+  
+                      </div>
+                    }
+                  </div>
+  
+                </div>
+
+              </div>
+            }     
           </div> 
         </section>
       }
