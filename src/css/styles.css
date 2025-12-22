@@ -395,11 +395,11 @@ body {
 
   .plan_title {
     color: #042e75;
-    font-size: 28px;
+    font-size: 26px;
     margin: 20px 0px;
 
     @media (max-width: 650px) { 
-      line-height: 40px;
+      line-height: 30px;
     }
   }
 
