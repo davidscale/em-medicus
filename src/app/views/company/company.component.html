@@ -215,7 +215,7 @@
                               </div>
   
                               <div class="planes_footer">
-                                <button class="btn bg-[#ff5863] text-white w-full h-11"
+                                <button class="btn bg-[#ff5863] text-white w-3/4 h-11 mx-auto block"
                                         (click)="scrollTop()">
                                   {{ 'COTIZÁ EL PLAN' | uppercase }}
                                 </button>
@@ -284,24 +284,44 @@
 
             </div>
 
-            <div class="w-screen max-w-[90%] flex justify-center flex-wrap gap-10 py-5 md:max-w-6xl">
+            <div class="relative w-screen max-w-[90%] md:max-w-6xl mx-auto py-5">
+              <!-- Flecha izquierda -->
+              <button class="hidden lg:flex slider-arrow left-arrow" (click)="prev()" >
+                ‹
+              </button>
 
-              <owl-carousel-o [options]="customOptionsBeneficios" class="w-full" >
+              <!-- Flecha derecha -->
+              <button class="hidden lg:flex slider-arrow right-arrow" (click)="next()" >
+                ›
+              </button>
+
+              <owl-carousel-o
+                #beneficiosCarousel
+                [options]="customOptionsBeneficios"
+                class="w-full"
+              >
                 @for (item of items; track item) {
                   <ng-template carouselSlide>
                     <div class="promo-card">
                       <div class="promo-header">
-                        <img [srcset]="'/assets/images/logos/beneficios/' + item.img + '.webp'" [alt]="item.title" class="promo-logo" />
+                        <img
+                          [srcset]="'/assets/images/logos/beneficios/' + item.img + '.webp'"
+                          [alt]="item.title"
+                          class="promo-logo"
+                        />
                         <span class="promo-title" [innerHTML]="item.title"></span>
                       </div>
-      
+
                       <p class="promo-text" [innerHTML]="item.subtitle"></p>
                     </div>
                   </ng-template>
-                } 
-              </owl-carousel-o> 
+                }
+              </owl-carousel-o>
 
             </div>
+
+
+            
 
  
           </div>

@@ -1,24 +1,24 @@
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselModule, OwlOptions, CarouselComponent  } from 'ngx-owl-carousel-o'; 
 import { CompanyService } from 'src/app/services/company.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { FormComponent } from 'src/app/views/company/form/form.component';
-import { NgClass, NgStyle, TitleCasePipe, UpperCasePipe, LowerCasePipe, } from '@angular/common';
+import { NgStyle, UpperCasePipe, LowerCasePipe } from '@angular/common';
 import { Company, Config } from 'src/app/shared/classes/company';
-import { titleLine } from 'src/app/shared/interfaces/tailwind-class';
+import { titleLine } from 'src/app/shared/interfaces/tailwind-class'; 
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    RouterLink,
+  imports: [ 
     FormComponent,
     CarouselModule,
-    NgClass, NgStyle,
-    TitleCasePipe, UpperCasePipe, LowerCasePipe,
+    NgStyle,
+    UpperCasePipe, LowerCasePipe,
   ]
 })
 export default class CompanyComponent implements OnInit, OnDestroy {
@@ -88,24 +88,53 @@ export default class CompanyComponent implements OnInit, OnDestroy {
   };
 
 
+  // public customOptionsBeneficios: OwlOptions = {
+  //   loop: true,
+  //   rewind: true,
+  //   mouseDrag: true,
+  //   touchDrag: true,
+  //   pullDrag: true,
+  //   navSpeed: 700,   
+  //   autoHeight: false,
+  //   autoWidth: false,
+  //   autoplayHoverPause: true,            
+  //   responsive: {
+  //     0: { items: 1.1 },      // 1 tarjeta + parte de otra
+  //     600: { items: 2.3 },    // más ancho
+  //     1000: { items: 2.6 },     // 3 total
+  //     1200: { items: 3.1 },
+  //     1600: { items: 3.5 },
+  //   }
+  // }
   public customOptionsBeneficios: OwlOptions = {
     loop: true,
     rewind: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    navSpeed: 700,   
+    navSpeed: 700,
     autoHeight: false,
     autoWidth: false,
-    autoplayHoverPause: true,            
+    autoplayHoverPause: true,
     responsive: {
-      0: { items: 1.1 },      // 1 tarjeta + parte de otra
-      600: { items: 2.3 },    // más ancho
-      1000: { items: 2.6 },     // 3 total
-      1200: { items: 3.1 },
-      1600: { items: 3.5 },
+      0: {
+        items: 1.1, 
+      },
+      600: {
+        items: 2.3, 
+      },
+      1000: {
+        items: 2.6, 
+      },
+      1200: {
+        items: 3.1, 
+      },
+      1600: {
+        items: 3.5, 
+      }
     }
-  }
+  };
+
 
   protected titleLine = titleLine;
 
@@ -189,4 +218,18 @@ export default class CompanyComponent implements OnInit, OnDestroy {
     const el = this.plansTrack.nativeElement;
     el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
   } 
+
+  
+
+  @ViewChild('beneficiosCarousel', { static: false })
+  beneficiosCarousel!: CarouselComponent;
+
+  next() {
+    this.beneficiosCarousel.next();
+  }
+
+  prev() {
+    this.beneficiosCarousel.prev();
+  }
+
 }

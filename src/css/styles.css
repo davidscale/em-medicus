@@ -610,6 +610,73 @@ body {
     margin: 35px 0px;
   }
 
+  
+
+}
+::ng-deep .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+::ng-deep .owl-nav button {
+  pointer-events: all;
+}
+
+::ng-deep .owl-prev,
+::ng-deep .owl-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+::ng-deep .owl-prev-arrow::before {
+  content: '‹';
+  font-size: 28px;
+  color: #0b2f6b;
+}
+
+::ng-deep .owl-next-arrow::before {
+  content: '›';
+  font-size: 28px;
+  color: #0b2f6b;
+}
+
+
+.slider-arrow {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #0b2f6b;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: -70px;
+}
+
+.right-arrow {
+  right: -70px;
 }
 
 .promo-card {
