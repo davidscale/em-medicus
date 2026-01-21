@@ -4,8 +4,8 @@ export const environment = {
   //phpBaseUrl: 'https://elegimejor-api.appspot.com/',
 
   //New PHP API TEST
-   phpBaseUrl: 'https://testpoint.elegimejor.com.ar/',
+   //phpBaseUrl: 'https://testpoint.elegimejor.com.ar/',
 
    //New PHP API PROD
-   //phpBaseUrl: 'https://endpoint.elegimejor.com.ar/',
+   phpBaseUrl: 'https://endpoint.elegimejor.com.ar/',
 };

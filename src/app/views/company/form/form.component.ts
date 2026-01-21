@@ -27,6 +27,9 @@ export class FormComponent implements OnInit {
   @Input() company: Company;
   protected isPersonal: boolean = true;
   protected companyForm: UntypedFormGroup;
+  residenciesOptions: { id: number; name: string }[] = [];
+  loadingResidences = true;
+  
   firstUrl = localStorage.getItem('FirstUrl');
   utm_source = localStorage.getItem('UTMSource');
 
@@ -55,6 +58,7 @@ export class FormComponent implements OnInit {
   protected labelClass = labelClass;
 
   ngOnInit(): void {
+    this.getAllResidences();
     this.createForm();
   }
 
@@ -95,7 +99,7 @@ export class FormComponent implements OnInit {
               return false; 
             }
 
-            this.enviarCRMHominis(form);
+            this.enviarCRMMedicus(data['response'].item);
             this.router.navigateByUrl(baseUrl); 
           },
           err => { throw err; }
@@ -200,13 +204,18 @@ export class FormComponent implements OnInit {
     control.updateValueAndValidity();
   }
 
-  async enviarCRMHominis(data:any) 
+  /*
+  * Función para enviar datos al CRM de Medicus
+  */
+  async enviarCRMMedicus(data:any) 
     {
+      //console.log(data);
+      //return false;
       let residencyName:any;
       //Obtengo nombre de la residencia
       try 
       {
-        residencyName = await firstValueFrom(this.companySrv.getResidenceById(data.residency));
+        residencyName = await firstValueFrom(this.companySrv.getResidenceById(data.residency_id));
       } 
       catch (error) 
       {
@@ -216,30 +225,30 @@ export class FormComponent implements OnInit {
       let capitas:Number = 1;
       let affiliateDescription:string;
          
-      if(data.spouseAge)
+      if(data.spouse_age)
       {
         capitas = 2;
       }else{
-        data.spouseAge = 0;
+        data.spouse_age = 0;
       }
       
-      if(data.numberOfChildren)
+      if(data.number_of_children)
       {
-        capitas = Number(capitas) + Number(data.numberOfChildren);
+        capitas = Number(capitas) + Number(data.number_of_children);
       }else{
-        data.numberOfChildren = 0;
+        data.number_of_children = 0;
       }
   
-      switch(data.type)
+      switch(String(data.affiliate_type))
       {
         case "1": 
-          affiliateDescription = 'Particular';
+          affiliateDescription = 'como particular';
           break;
         case "2":
-          affiliateDescription = 'Monotributista';
+          affiliateDescription = 'como monotributista';
           break;
         case "3":
-          affiliateDescription = 'Recibo';
+          affiliateDescription = 'en relación de dependencia';
           break;
         default:
           affiliateDescription = '';
@@ -247,19 +256,21 @@ export class FormComponent implements OnInit {
   
   
       let items = {
-          'nombre': data.firstName,
-          'apellido': 'N/A',
-          'telefono': this.formatPhone(String(data.phone), true),
-          'zona_residencia': residencyName.response.name,
-          'edad_actual': data.age,
-          'condicion': affiliateDescription,
-          'grupo_familiar': capitas,
-          'cobertura_interes': 'Hominis',
-          'fuente': 'Elegi Mejor'
+          'firstname': data.firstname,
+          'phone': this.formatPhone(String(data.phone)),
+          'id_formulario_em': data.id,
+          'city': residencyName.response.name,
+          'forma_de_contratacion': affiliateDescription,
+          'edad': data.age,
+          'edad_conyuge': data.spouse_age,
+          'cant_hijos': Number(data.number_of_children),
+          'campana':'Elegi_Mejor',
+          'capitas_en_grupo':capitas
       }
       
-
-      this.companySrv.sendToCRMHominis(items).subscribe({
+      //console.log(items);
+      //return true;
+      this.companySrv.sendToCRMMedicus(items).subscribe({
                     next: (data) => {
                       console.log('Respuesta del CRM:', data);
                     },
@@ -270,6 +281,7 @@ export class FormComponent implements OnInit {
                     }
           });
     }
+
     
     /*
     * Función para dar formato a los números de teléfono
@@ -289,10 +301,24 @@ export class FormComponent implements OnInit {
       //Si flag está en true, arma el número de teléfono todo junto sin separadores
       if(flag)
       {
-        return `+549${areaCode}${prefix}${line}`;
+        return `+54 9 ${areaCode} ${prefix} ${line}`;
       }
 
       return `+54(9${areaCode})${prefix}-${line}`;
+    }
+
+    public getAllResidences(){
+    
+      this.companySrv.getAllResidences().subscribe({
+          next: (data:any) => {
+              this.residenciesOptions = data.response.map(x => ({
+                  id: x.id,
+                  name: x.name
+                }));
+                this.loadingResidences = false;
+          },
+          error: () => this.loadingResidences = false
+      });
     }
 
 }

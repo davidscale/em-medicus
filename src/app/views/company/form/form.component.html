@@ -189,10 +189,12 @@
         </div>
       </ng-template>
 
-      <div class="form-group">
-        <select formControlName="residency" name="residency" class="form-control">
-          <option [value]="null" selected disabled>Residencia*</option>
-            <ng-container *ngFor="let item of company.residences">
+      <div class="form-group" *ngIf="residenciesOptions">
+        <select formControlName="residency" name="residency" class="form-control" [disabled]="loadingResidences">
+          <option [value]="null" selected disabled>
+             {{ loadingResidences ? 'Cargando residencias…' : 'Residencia*' }}
+          </option>
+            <ng-container *ngFor="let item of residenciesOptions">
               <option [value]="item.id">
                 {{ item.name }}
               </option>

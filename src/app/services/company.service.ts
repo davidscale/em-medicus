@@ -14,7 +14,6 @@ import { companyData } from '../shared/classes/companyData';
 
 export class CompanyService {
   private company$: BehaviorSubject<Company> = new BehaviorSubject<Company>(null);
-
   private http = inject(HttpClient);
   private router = inject(Router);
 
@@ -48,6 +47,11 @@ export class CompanyService {
    */
   public getCurrent(): Observable<Company> {
     return this.company$;
+  }
+
+  public getAllResidences():Observable<object>{
+      const url = environment.phpBaseUrl + 'residency/list';
+      return this.http.get(url);
   }
 
   /**
@@ -134,9 +138,9 @@ export class CompanyService {
     });
   }
 
-  // FUNCION PARA EL ENVIO DE DATOS AL CRM DE HOMINIS
-  sendToCRMHominis(items:any):Observable<any> {
-     return this.http.post(environment.phpBaseUrl + 'admin/sendhominiscrm', items);
+  // FUNCION PARA EL ENVIO DE DATOS AL CRM DE MEDICUS
+  sendToCRMMedicus(items:any):Observable<any> {
+     return this.http.post(environment.phpBaseUrl + 'admin/sendcrm', items);
   }
 
 }

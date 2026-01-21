@@ -36,12 +36,12 @@ export class ConfigService {
     let rel = this.doc.querySelectorAll('[rel="canonical"]');
 
     if (rel[0]) {
-      rel[0].setAttribute('href', 'https://hominis.elegimejor.com.ar' + this.doc.location.pathname);
+      rel[0].setAttribute('href', 'https://medicus.elegimejor.com.ar' + this.doc.location.pathname);
     } else {
       let link: HTMLLinkElement = this.doc.createElement('link');
       link.setAttribute('rel', 'canonical');
       this.doc.head.appendChild(link);
-      link.setAttribute('href', 'https://hominis.elegimejor.com.ar' + this.doc.location.pathname);
+      link.setAttribute('href', 'https://medicus.elegimejor.com.ar' + this.doc.location.pathname);
     }
   }
 }

@@ -21,11 +21,17 @@ export class WhastappMobileComponent implements OnInit {
   }
 
   private getCompanyData() {
-    this.companySrv.getCompanyData(12)
+    
+    let companyData = null;
+
+    this.companySrv.getCurrent().subscribe(company => {
+      
+      this.companySrv.getCompanyData(company.companyId)
       .subscribe((data: string) => {
         this.wspNumber = data;
         this.link = this.getLink();
       });
+    });
   }
 
   /**

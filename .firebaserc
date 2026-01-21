@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "em-medicus",
-    "landing-medicus-test": "landing-medicus-test"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "landing-medicus-test"
+  }
 }
