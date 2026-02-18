@@ -29,17 +29,17 @@
         </div>
 
         <div class="form-group">
-          <input formControlName="phone" name="phone" type="number" inputmode="tel" class="form-control" placeholder="Teléfono*"> 
+          <input formControlName="phone" name="phone" type="tel" class="form-control" placeholder="Teléfono*"> 
 
           <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
                       (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
             
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
-              Mínimo de 9 dígitos
+              Mínimo de 10 dígitos
             </ng-container>
 
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooLong']">
-              Máximo de 10 dígitos
+              Máximo de 15 dígitos
             </ng-container>
 
             <ng-container *ngIf="companyForm.get('phone')?.errors['required']">
@@ -127,7 +127,7 @@
 
           <span class="form-error"
             *ngIf="companyForm.get('cuitEmp').invalid && (companyForm.get('cuitEmp').dirty || companyForm.get('cuitEmp').touched)">
-            Inválido. Debe contener 11 dígitos.
+            Solo 11 dígitos.
           </span>
         </div>
 
@@ -140,22 +140,17 @@
         </div>
 
         <div class="form-group">
-          <input formControlName="phone" name="phone" type="number" inputmode="tel" class="form-control" placeholder="Tú Teléfono*">
-
-          <!-- <span class="form-error"
-            *ngIf="companyForm.get('phone').invalid && (companyForm.get('phone').dirty || companyForm.get('phone').touched)">
-            Mínimo de 10 dígitos
-          </span> -->
+          <input formControlName="phone" name="phone" type="tel" class="form-control" placeholder="Tú Teléfono*">
 
           <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
                       (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
             
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
-              Mínimo de 9 dígitos
+              Mínimo de 10 dígitos
             </ng-container>
 
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooLong']">
-              Máximo de 10 dígitos
+              Máximo de 15 dígitos
             </ng-container>
 
             <ng-container *ngIf="companyForm.get('phone')?.errors['required']">

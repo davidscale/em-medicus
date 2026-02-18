@@ -140,11 +140,11 @@ export class FormComponent implements OnInit {
         const value = control.value?.toString().replace(/\D/g, ''); // elimina caracteres no numéricos
         if (!value) return null;
 
-        if (value.length < 9) {
+        if (value.length < 10) {
           return { tooShort: true };
         }
 
-        if (value.length > 10) {
+        if (value.length > 15) {
           return { tooLong: true };
         }
 
