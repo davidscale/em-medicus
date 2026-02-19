@@ -74,7 +74,7 @@ export class FormComponent implements OnInit {
     this.ngOnInit();
   }
 
-  protected onSubmit() {
+  protected async onSubmit() {
     if (!this.checkForm()) { return; }
 
     const form: CompanyForm = this.companyForm.value;
@@ -82,11 +82,11 @@ export class FormComponent implements OnInit {
     form.companyId = this.company.companyId;
     form.companyName = this.company.name;
     form.first_url = this.firstUrl;
-    form.utm_source = this.utm_source;
+    form.utm_source = this.utm_source; 
 
     try {
       let baseUrl = '/enviado?';
-      baseUrl += 'tel=' + form.phone;
+      baseUrl += 'tel=' + form.phone; 
 
       if (this.isPersonal) {
         this.companySrv.onCompanyForm(form).subscribe(
@@ -98,16 +98,31 @@ export class FormComponent implements OnInit {
               this.notificationSrv.add(false, '', '', true);; this.ngOnInit();
               return false; 
             }
-
+ 
             this.enviarCRMMedicus(data['response'].item);
             this.router.navigateByUrl(baseUrl); 
           },
           err => { throw err; }
         )
       }
-      else {
-        //I send the name of residency, not ID when is a company form
-        form.company_residency = this.company.residences[form.residency].name;
+      else {     
+        
+        //residencia dato desde base
+        let residencyName: any;
+        try {
+          residencyName = await firstValueFrom(
+            this.companySrv.getResidenceById(form.residency)
+          );
+        } catch (error) {
+          console.error('Error en la API residencia', error);
+          this.notificationSrv.add(false);
+          return;
+        } 
+        form.company_residency = residencyName.response.name;
+
+        // console.log('city', form.company_residency);
+        //I send the name of residency, not ID when is a company form 
+        // form.company_residency = this.company.residences[form.residency -1].name; 
         this.mailSrv.sendEmailToEM(form, this.company.company_form_sellers).subscribe(
           response => { this.router.navigate(['enviado']); },
           err => { throw err; }
@@ -320,5 +335,7 @@ export class FormComponent implements OnInit {
           error: () => this.loadingResidences = false
       });
     }
+
+    
 
 }
