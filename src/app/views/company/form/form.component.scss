@@ -116,6 +116,14 @@
                 border-color: #007bff;
                 box-shadow: 0 0 5px #042e75;
             }
+            .phone-wrapper {
+                display: flex;
+                gap: 8px;
+            }
+
+            .country-select {
+                max-width: 140px;
+            }
         }
 
         .form-privacy {

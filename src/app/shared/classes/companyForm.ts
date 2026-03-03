@@ -5,6 +5,7 @@ export class CompanyForm {
   firstName: string;
   secondName: string;
   phone: string;
+  crmPhone: string;
   email: string;
   residency: number;
   company_residency: string;

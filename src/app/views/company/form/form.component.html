@@ -28,12 +28,32 @@
           </span>
         </div>
 
-        <div class="form-group">
-          <input formControlName="phone" name="phone" type="tel" class="form-control" placeholder="Teléfono*"> 
+        <div class="form-group phone-group">
 
-          <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
-                      (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
-            
+          <div class="phone-wrapper">
+
+            <!-- SELECT PAIS -->
+            <select formControlName="countryCode" class="form-control country-select" style="width: 65px !important;">
+              <option *ngFor="let c of countries" [value]="c.code">
+                {{ c.flag }}
+              </option>
+            </select>
+
+            <!-- TELEFONO -->
+            <input
+              formControlName="phone"
+              name="phone"
+              type="tel"
+              class="form-control"
+              placeholder="Teléfono*"
+            >
+
+          </div>
+
+          <span class="form-error"
+            *ngIf="companyForm.get('phone')?.errors &&
+                  (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
+
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
               Mínimo de 10 dígitos
             </ng-container>
@@ -47,6 +67,7 @@
             </ng-container>
 
           </span>
+
         </div>
 
         <ng-container>
@@ -139,12 +160,32 @@
           </span>
         </div>
 
-        <div class="form-group">
-          <input formControlName="phone" name="phone" type="tel" class="form-control" placeholder="Tú Teléfono*">
+        <div class="form-group phone-group">
 
-          <span class="form-error" *ngIf="companyForm.get('phone')?.errors && 
-                      (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
-            
+          <div class="phone-wrapper">
+
+            <!-- SELECT PAIS -->
+            <select formControlName="countryCode" class="form-control country-select" style="width: 65px !important;">
+              <option *ngFor="let c of countries" [value]="c.code">
+                {{ c.flag }}
+              </option>
+            </select>
+
+            <!-- TELEFONO -->
+            <input
+              formControlName="phone"
+              name="phone"
+              type="tel"
+              class="form-control"
+              placeholder="Teléfono*"
+            >
+
+          </div>
+
+          <span class="form-error"
+            *ngIf="companyForm.get('phone')?.errors &&
+                  (companyForm.get('phone')?.dirty || companyForm.get('phone')?.touched)">
+
             <ng-container *ngIf="companyForm.get('phone')?.errors['tooShort']">
               Mínimo de 10 dígitos
             </ng-container>
@@ -158,6 +199,7 @@
             </ng-container>
 
           </span>
+
         </div>
 
         <div class="form-group">

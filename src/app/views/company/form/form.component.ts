@@ -52,6 +52,20 @@ export class FormComponent implements OnInit {
     { id: 'Mí y mis hijos', name: 'Mí y mis hijos' }
   ];
 
+  protected countries = [
+    { name: 'Argentina', code: '+54', flag: '🇦🇷' },  
+    { name: 'Chile', code: '+56', flag: '🇨🇱' },      
+    { name: 'Uruguay', code: '+598', flag: '🇺🇾' },   
+    { name: 'Brasil', code: '+55', flag: '🇧🇷' },     
+    { name: 'México', code: '+52', flag: '🇲🇽' },     
+    { name: 'España', code: '+34', flag: '🇪🇸' },
+    { name: 'Perú', code: '+51', flag: '🇵🇪' },
+    { name: 'Bolivia', code: '+591', flag: '🇧🇴' },
+    { name: 'Venezuela', code: '+58', flag: '🇻🇪' },
+    { name: 'Ecuador', code: '+593', flag: '🇪🇨' },
+    { name: 'Colombia', code: '+57', flag: '🇨🇴' }
+  ];
+
   protected childrens = [...Array(10).keys()];
 
   protected inputClass = inputClass;
@@ -59,25 +73,51 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllResidences();
-    this.createForm();
+    this.buildFormOnce();
+    this.applyValidatorsByTab(); // arranca en Personas
   }
-
-  // protected changeForm(isPersonal: boolean = true) {
-  //   if (this.isPersonal != isPersonal) {
-  //     this.isPersonal = !this.isPersonal;
-  //     this.ngOnInit();
-  //   }
-  // }
 
   public changeForm() {
     this.isPersonal = !this.isPersonal;
-    this.ngOnInit();
+    this.applyValidatorsByTab();
+
+    // opcional UX: no arrastrar estados visuales
+    this.companyForm.markAsPristine();
+    this.companyForm.markAsUntouched();
   }
+
 
   protected async onSubmit() {
     if (!this.checkForm()) { return; }
 
     const form: CompanyForm = this.companyForm.value;
+
+    const country = this.companyForm.get('countryCode')?.value;
+    const phone = this.companyForm.get('phone')?.value;
+    let crmPhone = null;
+    // limpiamos número
+    let digits = phone.replace(/\D/g, '');
+    // quitar todos los ceros iniciales
+    digits = digits.replace(/^0+/, '');
+    // concatenado final
+    if(country == '+54') {
+      let line = digits.slice(-4);        // últimos 4
+      let prefix = digits.slice(-8, -4);  // 4 anteriores
+      let area = digits.slice(0, -8);
+      if(area == '15' || area == '11') //Verifico si es buenos aires o el interior
+      {
+        crmPhone = `+54(911)${prefix}-${line}`;
+      }else{
+        crmPhone = `+54(9${area})${prefix}-${line}`;
+      }
+       //guardo el formato especial del telefono para el crm de medicus
+      form.phone = `+54911${prefix}${line}`;
+    } else {
+      form.phone = `${country}${digits}`;
+      crmPhone = `${country}${digits}`; //guardo el formato especial del telefono para el crm de medicus
+    }    
+    //console.log(form.phone);
+    //return false;
 
     form.companyId = this.company.companyId;
     form.companyName = this.company.name;
@@ -99,7 +139,7 @@ export class FormComponent implements OnInit {
               return false; 
             }
  
-            this.enviarCRMMedicus(data['response'].item);
+            this.enviarCRMMedicus(data['response'].item, crmPhone);
             this.router.navigateByUrl(baseUrl); 
           },
           err => { throw err; }
@@ -140,70 +180,6 @@ export class FormComponent implements OnInit {
     return true;
   }
 
-  private createForm() {
-    const required = Validators.required;
-
-    const nameValidators = [required, Validators.maxLength(50), Validators.minLength(2)];
-    const cuitValidators = [required, Validators.pattern(/^\d{11}$/)];
-    const razonSocialEmpValidators = [required, Validators.maxLength(100), Validators.minLength(2)];
-    // const phoneValidators = [required, Validators.pattern(/^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im)];
-    // const phoneValidators = [required, Validators.pattern(/^\d{10}$/)];
-    const emailValidators = [required, Validators.email];
-
-
-    const phoneValidators: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-        const value = control.value?.toString().replace(/\D/g, ''); // elimina caracteres no numéricos
-        if (!value) return null;
-
-        if (value.length < 10) {
-          return { tooShort: true };
-        }
-
-        if (value.length > 15) {
-          return { tooLong: true };
-        }
-
-        return null;
-      };
-
-    if (this.isPersonal) {
-      this.companyForm = this.fb.group({
-        firstName: new UntypedFormControl(null, Validators.compose(nameValidators)),
-        // phone: new UntypedFormControl(null, Validators.compose(phoneValidators)),
-        phone: ['', [Validators.required, phoneValidators]],
-        residency: new UntypedFormControl(null, Validators.compose([required])),
-      });
-    } else {
-      this.companyForm = this.fb.group({
-        razonSocialEmp: new UntypedFormControl(null, Validators.compose(razonSocialEmpValidators)),
-        cuitEmp: new UntypedFormControl(null, Validators.compose(cuitValidators)),
-        firstName: new UntypedFormControl(null, Validators.compose(nameValidators)),
-        // phone: new UntypedFormControl(null, Validators.compose(phoneValidators)),
-        phone: ['', [Validators.required, phoneValidators]],
-        residency: new UntypedFormControl(null, Validators.compose([required])),
-        email: new UntypedFormControl(null, Validators.compose(emailValidators)),
-      });  
-    }
-   
-    this.isPersonal ? this.addFormPersonal() : this.addFormCompany();
-  }
-
-  private addFormPersonal() {
-    const required = Validators.required;
-    const minAgeValidators = Validators.min(this.company.valid_age.min);
-    const maxAgeValidators = Validators.max(this.company.valid_age.max);
-
-    this.companyForm.addControl('age', new UntypedFormControl(null, Validators.compose([required, minAgeValidators, maxAgeValidators])));
-    this.companyForm.addControl('family', new UntypedFormControl(null, Validators.compose([required])));
-    this.companyForm.addControl('spouseAge', new UntypedFormControl(null, Validators.compose([])));
-    this.companyForm.addControl('numberOfChildren', new UntypedFormControl(null, Validators.compose([])));
-    this.companyForm.addControl('type', new UntypedFormControl(null, Validators.compose([required])));
-  }
-
-  private addFormCompany() {
-    this.companyForm.addControl('employees', new UntypedFormControl(null, Validators.compose([Validators.required])));
-  }
-
   protected onFamily(val: string) {
     const hasSpouse = [this.familyTypes[1].name, this.familyTypes[2].name].includes(val);
     const hasChildren = [this.familyTypes[2].name, this.familyTypes[3].name].includes(val);
@@ -222,7 +198,7 @@ export class FormComponent implements OnInit {
   /*
   * Función para enviar datos al CRM de Medicus
   */
-  async enviarCRMMedicus(data:any) 
+  async enviarCRMMedicus(data:any, crmPhone:string) 
     {
       //console.log(data);
       //return false;
@@ -272,7 +248,7 @@ export class FormComponent implements OnInit {
   
       let items = {
           'firstname': data.firstname,
-          'phone': this.formatPhone(String(data.phone)),
+          'phone': crmPhone,
           'id_formulario_em': data.id,
           'city': residencyName.response.name,
           'forma_de_contratacion': affiliateDescription,
@@ -297,31 +273,6 @@ export class FormComponent implements OnInit {
           });
     }
 
-    
-    /*
-    * Función para dar formato a los números de teléfono
-    */
-
-    formatPhone(phone: string, flag: boolean = false): string 
-    {
-      // 1. Limpiamos caracteres no numéricos
-      let digits = phone.replace(/\D/g, '');
-  
-      // 2. Tomamos partes desde atrás hacia adelante
-      let line = digits.slice(-4);        // últimos 4
-      let prefix = digits.slice(-8, -4);  // 4 anteriores
-      let areaCode = digits.slice(0, -8); // lo que sobra al principio
-  
-      // 3. Armamos el formato
-      //Si flag está en true, arma el número de teléfono todo junto sin separadores
-      if(flag)
-      {
-        return `+54 9 ${areaCode} ${prefix} ${line}`;
-      }
-
-      return `+54(9${areaCode})${prefix}-${line}`;
-    }
-
     public getAllResidences(){
     
       this.companySrv.getAllResidences().subscribe({
@@ -336,6 +287,104 @@ export class FormComponent implements OnInit {
       });
     }
 
-    
+  private buildFormOnce() {
+    this.companyForm = this.fb.group({
+    // comunes
+    residency: [null],
+    firstName: [null],
+    phone: [null],
+    email: [null],
+    countryCode: ['+54'], // nuevo para telefonos
 
+    // personas
+    age: [null],
+    family: [null],
+    spouseAge: [null],
+    numberOfChildren: [null],
+    type: [null],
+    contactByPhone: ['no'],
+
+    // empresas
+    razonSocialEmp: [null],
+    cuitEmp: [null],
+    employees: [null],
+  });
+}
+
+  private applyValidatorsByTab() {
+    const required = Validators.required;
+
+    const nameValidators = [required, Validators.minLength(2), Validators.maxLength(50)];
+    const razonSocialValidators = [required, Validators.minLength(2), Validators.maxLength(100)];
+    const cuitValidators = [required, Validators.pattern(/^\d{11}$/)];
+    const emailValidators = [required, Validators.email];
+
+    const phoneValidators: ValidatorFn = (control: AbstractControl) => {
+      if (!control.value) return null;
+      const raw = control.value.toString().trim();
+
+      if (!/^\+?\d+$/.test(raw)) return { invalidFormat: true };
+
+      const digits = raw.replace(/\D/g, '');
+      if (digits.length < 10) return { tooShort: true };
+      if (digits.length > 15) return { tooLong: true };
+      return null;
+    };
+
+    const set = (name: string, validators: any[]) => {
+      const c = this.companyForm.get(name);
+      c?.setValidators(validators);
+      c?.updateValueAndValidity({ emitEvent: false });
+    };
+
+    const clear = (name: string) => {
+      const c = this.companyForm.get(name);
+      c?.clearValidators();
+      c?.updateValueAndValidity({ emitEvent: false });
+    };
+
+    // Siempre válidos en ambas solapas
+    set('firstName', nameValidators);
+    set('phone', [required, phoneValidators]);
+    set('residency', [required]);
+
+    if (this.isPersonal) {
+      // PERSONAS: activos
+      set('age', [required, Validators.min(this.company.valid_age.min), Validators.max(this.company.valid_age.max)]);
+      set('family', [required]);
+      set('type', [required]);
+      set('contactByPhone', [required]);
+
+      // PERSONAS condicionales (se manejan con onFamily)
+      clear('spouseAge');
+      clear('numberOfChildren');
+
+      // EMPRESAS: apagados
+      clear('razonSocialEmp');
+      clear('cuitEmp');
+      clear('employees');
+      clear('email');
+
+      this.companyForm.get('email')?.setValue(null, { emitEvent: false });
+      this.companyForm.get('employees')?.setValue(null, { emitEvent: false });
+
+    } else {
+      // EMPRESAS: activos
+      set('razonSocialEmp', razonSocialValidators);
+      set('cuitEmp', cuitValidators);
+      set('email', emailValidators);
+      set('employees', [required]);
+
+      // PERSONAS: apagados
+      clear('age');
+      clear('family');
+      clear('spouseAge');
+      clear('numberOfChildren');
+      clear('type');
+      clear('contactByPhone');
+
+      // valores que no aplican
+      this.companyForm.get('contactByPhone')?.setValue('no', { emitEvent: false });
+    }
+  }
 }
