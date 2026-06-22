@@ -143,4 +143,23 @@ export class CompanyService {
      return this.http.post(environment.phpBaseUrl + 'admin/sendcrm', items);
   }
 
+  //Servicio para enviar datos a la API desde la landing de empresas
+  public companyForm(companyForm: any) {
+    const url_post = environment.phpBaseUrl + 'company/save-form';
+    const data = {
+      origin: companyForm.origin,
+      company: companyForm.companyName,
+      cuit: companyForm.companyCUIT,
+      residency: companyForm.companyResidency,
+      name: companyForm.contactName,
+      phone: companyForm.contactPhone,
+      email: companyForm.contactEmail,
+      employees: companyForm.employees,
+      first_url: companyForm.first_url,
+      fuente: companyForm.utm_source
+    };
+
+    return this.http.post(url_post, data);
+  }
+
 }

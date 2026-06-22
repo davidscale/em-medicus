@@ -3,7 +3,7 @@ import { AbstractControl, ReactiveFormsModule, UntypedFormBuilder, UntypedFormCo
 
 import { Company } from 'src/app/shared/classes/company';
 import { CompanyForm } from 'src/app/shared/classes/companyForm';
-
+import { environment } from 'src/environments/environment';
 
 import { MailService } from 'src/app/services/mail.service';
 import { CompanyService } from 'src/app/services/company.service';
@@ -160,12 +160,39 @@ export class FormComponent implements OnInit {
         } 
         form.company_residency = residencyName.response.name;
 
-        // console.log('city', form.company_residency);
-        //I send the name of residency, not ID when is a company form 
-        // form.company_residency = this.company.residences[form.residency -1].name; 
-        this.mailSrv.sendEmailToEM(form, this.company.company_form_sellers).subscribe(
-          response => { this.router.navigate(['enviado']); },
-          err => { throw err; }
+        const companyForm: any = {
+          origin: 'Landing '+ form.companyName,
+          companyName: form.razonSocialEmp,
+          companyCUIT: form.cuitEmp,
+          companyResidency: form.company_residency,
+          contactName: form.firstName,
+          contactPhone: form.phone, // ya formateado
+          contactEmail: form.email,
+          employees: form.employees,
+          companyId: form.companyId,
+          first_url: form.first_url,
+          utm_source: form.utm_source
+        };
+
+        if (!environment.production) {
+          console.log('>>>Company Data:', companyForm);
+          return true;
+        }
+
+        this.companySrv.companyForm(companyForm).subscribe(
+          data => {
+            if(data['response'].repetido)
+            {
+              this.notificationSrv.add(true, '', '', true);
+            }
+            else if(data['response'].item)
+            {    
+              //this.notificationSrv.add(true);
+              this.router.navigateByUrl(baseUrl);
+            }
+            this.ngOnInit();
+          },
+           err => { throw err; }         
         );
       }
     }
@@ -259,8 +286,12 @@ export class FormComponent implements OnInit {
           'capitas_en_grupo':capitas
       }
       
-      //console.log(items);
-      //return true;
+      if(!environment.production)
+      {
+        console.log(items);
+        return true;
+      }
+
       this.companySrv.sendToCRMMedicus(items).subscribe({
                     next: (data) => {
                       console.log('Respuesta del CRM:', data);

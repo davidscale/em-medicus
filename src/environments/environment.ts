@@ -1,11 +1,9 @@
 export const environment = {
-  production: true,
-  //javaBaseUrl: 'https://elegimejor-java-dot-elegimejor-api.appspot.com/',
-  //phpBaseUrl: 'https://elegimejor-api.appspot.com/',
-
   //New PHP API TEST
+  //production: false,
   //phpBaseUrl: 'https://testpoint.elegimejor.com.ar/',
 
   //New PHP API PROD
+  production: true,
   phpBaseUrl: 'https://endpoint.elegimejor.com.ar/',
 };
